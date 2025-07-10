@@ -13,6 +13,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
   error?: string;
   accent?: SelectAccent;
   options: SelectOption[];
+  withShadow?: boolean;
 }
 
 const accentColor = (accent: SelectAccent | undefined, theme: any) => {
@@ -23,6 +24,8 @@ const accentColor = (accent: SelectAccent | undefined, theme: any) => {
     default: return theme.colors.brown;
   }
 };
+
+const shadow = '2px 2px 0 #353C42';
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,28 +42,33 @@ const Label = styled.label`
   color: ${({ theme }) => theme.colors.black};
 `;
 
-const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean }>`
-  font-family: ${({ theme }) => theme.fontFamilies.mono};
+const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean; $withShadow?: boolean }>`
+  font-family: 'IBM Plex Mono', 'Space Grotesk', Arial, sans-serif;
   font-size: 1.35rem;
-  font-weight: ${({ theme }) => theme.fontWeightBold};
-  color: ${({ theme }) => theme.colors.black};
-  background: ${({ theme }) => theme.colors.beige};
-  border: ${({ theme, $accent, $error }) =>
-    $error
-      ? `${theme.borderWidth} solid ${theme.colors.accentRed}`
-      : `${theme.borderWidth} solid ${accentColor($accent, theme)}`};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  font-weight: 700;
+  color: #18181A;
+  background: #F9E2B0;
+  border: 2px solid #672725;
+  border-radius: 0;
   padding: 20px 32px;
   outline: none;
-  box-shadow: none;
-  transition: none;
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
+  transition: box-shadow 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
   min-height: 64px;
-  cursor: pointer;
+  width: 100%;
+  &:focus {
+    border-color: #F56D39;
+    box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
+  }
+  &:hover {
+    box-shadow: ${({ $withShadow }) => $withShadow !== false ? '3px 3px 0 #353C42' : 'none'};
+  }
   &:disabled {
-    background: ${({ theme }) => theme.colors.blueGray};
-    color: ${({ theme }) => theme.colors.darkGray};
+    background: #8A9EA5;
+    color: #353C42;
     cursor: not-allowed;
   }
+  border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
 `;
 
 const Error = styled.span`
@@ -70,10 +78,10 @@ const Error = styled.span`
   font-weight: ${({ theme }) => theme.fontWeightBold};
 `;
 
-export const Select: React.FC<SelectProps> = ({ label, error, accent, options, disabled, ...rest }) => (
+export const Select: React.FC<SelectProps> = ({ label, error, accent, options, disabled, withShadow = true, ...rest }) => (
   <Wrapper>
     {label && <Label>{label}</Label>}
-    <StyledSelect $accent={accent} $error={!!error} disabled={disabled} {...rest}>
+    <StyledSelect $accent={accent} $error={!!error} disabled={disabled} $withShadow={withShadow} {...rest}>
       {options.map(opt => (
         <option key={opt.value} value={opt.value}>{opt.label}</option>
       ))}
