@@ -217,6 +217,26 @@ MIT
 
 ---
 
+## Иконки
+
+В библиотеке есть универсальный компонент `<Icon name="..." />` и набор SVG-иконок:
+
+**Доступные иконки:**
+
+search, close, user, arrow-left, arrow-right, arrow-up, arrow-down, check, warning, info, plus, minus, edit, trash, bell, eye, lock, unlock, calendar, play, pause, upload, download, bookmark, filter, refresh, document
+
+**Пример использования:**
+
+```tsx
+import { Icon } from 'neo-brutal-ui';
+
+<Icon name="check" size={32} color="#F56D39" />
+```
+
+Все иконки можно посмотреть в Storybook (раздел Icons).
+
+---
+
 ## Генератор компонентов
 
 Быстро создавай новый компонент по FSD-структуре:

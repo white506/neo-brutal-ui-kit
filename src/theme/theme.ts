@@ -90,7 +90,8 @@ export const themeNight = {
   overrides: {}, // для кастомизации компонентов
   variants: {
     Button: {
-      outline: `background: transparent; color: #FFFFFF; border-color: #FFFFFF;`,
+      primary: `background: #2D1A13; color: #F9E2B0; border-color: #2D1A13;`,
+      outline: `background: transparent; color: #F9E2B0; border-color: #F9E2B0;`,
       flat: `background: none; color: #F9E2B0; border: none;`,
       link: `background: none; color: #F56D39; border: none; text-decoration: underline;`,
     },
