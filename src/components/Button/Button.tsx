@@ -12,9 +12,9 @@ const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
   switch (variant) {
     case 'accent':
       return css`
-        background: ${theme.colors.accentOrange};
+        background: ${theme.colors.orange};
         color: ${theme.colors.white};
-        border-color: ${theme.colors.accentOrange};
+        border-color: ${theme.colors.orange};
       `;
     case 'danger':
       return css`
@@ -25,15 +25,15 @@ const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
     case 'ghost':
       return css`
         background: transparent;
-        color: ${theme.colors.black};
-        border-color: ${theme.colors.black};
+        color: ${theme.colors.brown};
+        border-color: ${theme.colors.brown};
       `;
     case 'primary':
     default:
       return css`
-        background: ${theme.colors.black};
+        background: ${theme.colors.brown};
         color: ${theme.colors.white};
-        border-color: ${theme.colors.black};
+        border-color: ${theme.colors.brown};
       `;
   }
 };
@@ -63,6 +63,8 @@ const StyledButton = styled.button<ButtonProps>`
     filter: brightness(0.85);
   }
   &:disabled {
+    background: ${({ theme }) => theme.colors.blueGray};
+    color: ${({ theme }) => theme.colors.white};
     opacity: 0.5;
     cursor: not-allowed;
   }

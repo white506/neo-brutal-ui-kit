@@ -18,7 +18,7 @@ const Label = styled.label`
   font-weight: ${({ theme }) => theme.fontWeightBold};
   font-size: 1.5rem;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.brown};
 `;
 
 const StyledInput = styled.input`
@@ -26,8 +26,8 @@ const StyledInput = styled.input`
   font-size: 1.35rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   color: ${({ theme }) => theme.colors.black};
-  background: ${({ theme }) => theme.colors.white};
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  background: ${({ theme }) => theme.colors.beige};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 20px 32px;
   outline: none;
@@ -35,11 +35,11 @@ const StyledInput = styled.input`
   transition: none;
   min-height: 64px;
   &:focus {
-    border-color: ${({ theme }) => theme.colors.accentBlue};
+    border-color: ${({ theme }) => theme.colors.orange};
   }
   &:disabled {
-    background: ${({ theme }) => theme.colors.gray200};
-    color: ${({ theme }) => theme.colors.gray400};
+    background: ${({ theme }) => theme.colors.blueGray};
+    color: ${({ theme }) => theme.colors.darkGray};
     cursor: not-allowed;
   }
 `;

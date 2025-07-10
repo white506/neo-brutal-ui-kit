@@ -12,10 +12,10 @@ export interface TooltipProps {
 
 const accentColor = (accent: TooltipProps['accent'], theme: any) => {
   switch (accent) {
-    case 'orange': return theme.colors.accentOrange;
-    case 'blue': return theme.colors.accentBlue;
+    case 'orange': return theme.colors.orange;
+    case 'blue': return theme.colors.blueGray;
     case 'red': return theme.colors.accentRed;
-    default: return theme.colors.black;
+    default: return theme.colors.brown;
   }
 };
 
@@ -30,7 +30,7 @@ const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProp
   min-width: 180px;
   max-width: 320px;
   padding: 20px 32px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme, $accent }) => theme.borderWidth} solid ${({ theme, $accent }) => accentColor($accent, theme)};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -51,7 +51,7 @@ const Arrow = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['ac
   position: absolute;
   width: 18px;
   height: 18px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   border: ${({ theme, $accent }) => theme.borderWidth} solid ${({ theme, $accent }) => accentColor($accent, theme)};
   box-sizing: border-box;
   z-index: 101;

@@ -11,10 +11,10 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
 
 const accentColor = (accent: CheckboxAccent | undefined, theme: any) => {
   switch (accent) {
-    case 'orange': return theme.colors.accentOrange;
-    case 'blue': return theme.colors.accentBlue;
+    case 'orange': return theme.colors.orange;
+    case 'blue': return theme.colors.blueGray;
     case 'red': return theme.colors.accentRed;
-    default: return theme.colors.black;
+    default: return theme.colors.brown;
   }
 };
 
@@ -42,7 +42,7 @@ const Box = styled.span<{ $checked: boolean; $accent?: CheckboxAccent; $error?: 
       ? `${theme.borderWidth} solid ${theme.colors.accentRed}`
       : `${theme.borderWidth} solid ${accentColor($accent, theme)}`};
   border-radius: ${({ theme }) => theme.borderRadius};
-  background: ${({ theme, $disabled }) => $disabled ? theme.colors.gray200 : theme.colors.white};
+  background: ${({ theme, $disabled }) => $disabled ? theme.colors.blueGray : theme.colors.beige};
   transition: none;
   box-shadow: none;
   cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
@@ -57,7 +57,7 @@ const CheckMark = styled.svg<{ $checked: boolean; $accent?: CheckboxAccent; $dis
   width: 24px;
   height: 24px;
   stroke: ${({ theme, $accent, $disabled }) =>
-    $disabled ? theme.colors.gray400 : accentColor($accent, theme)};
+    $disabled ? theme.colors.darkGray : accentColor($accent, theme)};
   stroke-width: 4px;
   stroke-linecap: square;
   fill: none;

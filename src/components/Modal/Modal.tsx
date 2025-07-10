@@ -23,10 +23,10 @@ const Overlay = styled.div`
 const ModalBox = styled.div<{ $background?: 'concrete' }>`
   background: ${({ theme, $background }) =>
     $background === 'concrete'
-      ? `${theme.colors.white} ${concreteTexture} repeat`
-      : theme.colors.white};
+      ? `${theme.colors.beige} ${concreteTexture} repeat`
+      : theme.colors.beige};
   color: ${({ theme }) => theme.colors.black};
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   border-radius: ${({ theme }) => theme.borderRadius};
   min-width: 600px;
   max-width: 90vw;
@@ -52,9 +52,9 @@ const CloseBtn = styled.button`
   position: absolute;
   top: 24px;
   right: 32px;
-  background: ${({ theme }) => theme.colors.accentRed};
+  background: ${({ theme }) => theme.colors.orange};
   color: ${({ theme }) => theme.colors.white};
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   border-radius: ${({ theme }) => theme.borderRadius};
   font-size: 1.2rem;
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};

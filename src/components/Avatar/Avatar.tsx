@@ -15,10 +15,10 @@ export interface AvatarProps {
 
 const accentColor = (accent: AvatarAccent | undefined, theme: any) => {
   switch (accent) {
-    case 'orange': return theme.colors.accentOrange;
-    case 'blue': return theme.colors.accentBlue;
+    case 'orange': return theme.colors.orange;
+    case 'blue': return theme.colors.blueGray;
     case 'red': return theme.colors.accentRed;
-    default: return theme.colors.black;
+    default: return theme.colors.brown;
   }
 };
 
@@ -35,7 +35,7 @@ const Root = styled.div<{ $accent?: AvatarAccent; $size: AvatarSize }>`
   height: ${({ $size }) => sizeMap[$size]}px;
   min-width: ${({ $size }) => sizeMap[$size]}px;
   min-height: ${({ $size }) => sizeMap[$size]}px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   border: ${({ theme, $accent }) => theme.borderWidth} solid ${({ theme, $accent }) => accentColor($accent, theme)};
   border-radius: ${({ theme }) => theme.borderRadius};
   overflow: hidden;

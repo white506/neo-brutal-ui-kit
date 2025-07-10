@@ -12,11 +12,11 @@ export interface ToastProps {
 
 const typeColor = (type: ToastType, theme: any) => {
   switch (type) {
-    case 'success': return theme.colors.accentBlue;
+    case 'success': return theme.colors.blueGray;
     case 'error': return theme.colors.accentRed;
-    case 'warning': return theme.colors.accentOrange;
+    case 'warning': return theme.colors.orange;
     case 'info':
-    default: return theme.colors.black;
+    default: return theme.colors.brown;
   }
 };
 
@@ -27,7 +27,7 @@ const ToastRoot = styled.div<{ $type: ToastType }>`
   min-width: 400px;
   max-width: 600px;
   padding: 32px 48px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme, $type }) => theme.borderWidth} solid ${({ theme, $type }) => typeColor($type, theme)};
   border-radius: ${({ theme }) => theme.borderRadius};

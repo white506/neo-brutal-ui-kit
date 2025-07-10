@@ -20,7 +20,7 @@ const TableRoot = styled.table`
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-size: 1.3rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
@@ -29,8 +29,8 @@ const TableRoot = styled.table`
 `;
 
 const Th = styled.th<{ $accent?: boolean }>`
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
-  background: ${({ theme, $accent }) => $accent ? theme.colors.accentOrange : theme.colors.gray100};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
+  background: ${({ theme, $accent }) => $accent ? theme.colors.orange : theme.colors.blueGray};
   color: ${({ theme, $accent }) => $accent ? theme.colors.white : theme.colors.black};
   padding: 24px 32px;
   text-align: left;
@@ -39,18 +39,18 @@ const Th = styled.th<{ $accent?: boolean }>`
 `;
 
 const Td = styled.td`
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   padding: 24px 32px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   font-family: ${({ theme }) => theme.fontFamilies.mono};
   font-size: 1.1em;
 `;
 
 const Tr = styled.tr<{ $highlight?: boolean }>`
   ${({ $highlight, theme }) => $highlight && css`
-    background: ${theme.colors.accentBlue};
+    background: ${theme.colors.blueGray};
     color: ${theme.colors.white};
-    td { background: ${theme.colors.accentBlue}; color: ${theme.colors.white}; }
+    td { background: ${theme.colors.blueGray}; color: ${theme.colors.white}; }
   `}
 `;
 

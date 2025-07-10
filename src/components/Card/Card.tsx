@@ -14,10 +14,10 @@ export interface CardProps {
 const CardRoot = styled.div<{ $background?: 'concrete' }>`
   background: ${({ theme, $background }) =>
     $background === 'concrete'
-      ? `${theme.colors.white} ${concreteTexture} repeat`
-      : theme.colors.white};
+      ? `${theme.colors.beige} ${concreteTexture} repeat`
+      : theme.colors.beige};
   color: ${({ theme }) => theme.colors.black};
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: 48px;
   display: flex;
@@ -40,7 +40,7 @@ const CardTitle = styled.div`
 const CardSubtitle = styled.div`
   font-family: ${({ theme }) => theme.fontFamilies.mono};
   font-size: 1.1rem;
-  color: ${({ theme }) => theme.colors.gray400};
+  color: ${({ theme }) => theme.colors.blueGray};
   font-weight: ${({ theme }) => theme.fontWeightBold};
 `;
 
@@ -54,13 +54,13 @@ const CardActions = styled.div`
   display: flex;
   gap: 32px;
   margin-top: 40px;
-  border-top: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border-top: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   padding-top: 24px;
   margin-left: -48px;
   margin-right: -48px;
   padding-left: 48px;
   padding-right: 48px;
-  background: ${({ theme }) => theme.colors.gray100};
+  background: ${({ theme }) => theme.colors.blueGray};
 `;
 
 export const Card: React.FC<CardProps> = ({ title, subtitle, children, actions, className, background }) => (

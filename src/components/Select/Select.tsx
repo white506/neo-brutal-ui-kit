@@ -17,10 +17,10 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 
 const accentColor = (accent: SelectAccent | undefined, theme: any) => {
   switch (accent) {
-    case 'orange': return theme.colors.accentOrange;
-    case 'blue': return theme.colors.accentBlue;
+    case 'orange': return theme.colors.orange;
+    case 'blue': return theme.colors.blueGray;
     case 'red': return theme.colors.accentRed;
-    default: return theme.colors.black;
+    default: return theme.colors.brown;
   }
 };
 
@@ -44,7 +44,7 @@ const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean }>
   font-size: 1.35rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   color: ${({ theme }) => theme.colors.black};
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.beige};
   border: ${({ theme, $accent, $error }) =>
     $error
       ? `${theme.borderWidth} solid ${theme.colors.accentRed}`
@@ -57,8 +57,8 @@ const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean }>
   min-height: 64px;
   cursor: pointer;
   &:disabled {
-    background: ${({ theme }) => theme.colors.gray200};
-    color: ${({ theme }) => theme.colors.gray400};
+    background: ${({ theme }) => theme.colors.blueGray};
+    color: ${({ theme }) => theme.colors.darkGray};
     cursor: not-allowed;
   }
 `;
