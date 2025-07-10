@@ -107,6 +107,25 @@ const IconWrap = styled.span`
   justify-content: center;
 `;
 
-export const Button: React.FC<ButtonProps> = ({ withShadow = true, ...props }) => (
-  <StyledButton $withShadow={withShadow} {...props} />
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  variant = 'primary',
+  size = 'md',
+  fullWidth,
+  iconLeft,
+  iconRight,
+  withShadow = true,
+  ...rest
+}) => (
+  <StyledButton
+    $variant={variant}
+    $size={size}
+    $fullWidth={fullWidth}
+    $withShadow={withShadow}
+    {...rest}
+  >
+    {iconLeft && <IconWrap>{iconLeft}</IconWrap>}
+    {children}
+    {iconRight && <IconWrap>{iconRight}</IconWrap>}
+  </StyledButton>
 ); 
