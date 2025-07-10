@@ -1,11 +1,11 @@
 export const colors = {
-  // Основные
-  black: '#181818', // самый тёмный
-  darkGray: '#35393B',
-  gray: '#8A9BA3',
-  beige: '#F7E1B0',
-  orange: '#FF6A2D',
-  brown: '#642524',
+  // Новая палитра
+  brown: '#672725',
+  orange: '#F56D39',
+  beige: '#F9E2B0',
+  blueGray: '#8A9EA5',
+  darkGray: '#353C42',
+  black: '#18181A',
   // Старые акценты (оставляю для обратной совместимости)
   accentOrange: '#FF4D00',
   accentBlue: '#429EFF',
