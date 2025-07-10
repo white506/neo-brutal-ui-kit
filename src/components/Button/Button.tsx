@@ -75,29 +75,47 @@ const StyledButton = styled.button<{ $variant: string; $size: string; $fullWidth
   justify-content: center;
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-weight: ${({ theme }) => theme.fontWeightBold};
-  text-transform: uppercase;
+  font-size: ${({ $size }) =>
+    $size === 'sm' ? '1.1rem' : $size === 'lg' ? '1.7rem' : '1.35rem'};
+  padding: ${({ $size }) =>
+    $size === 'sm' ? '12px 24px' : $size === 'lg' ? '28px 48px' : '20px 32px'};
   border: ${({ theme }) => theme.borderWidth} solid;
   border-radius: ${({ theme }) => theme.borderRadius};
-  transition: box-shadow 0.15s, background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
-  outline: none;
-  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
   letter-spacing: 0.04em;
-  ${({ size = 'md' }) => sizeStyles[size]}
-  ${({ variant = 'primary', theme }) => getVariantStyles(variant, theme)}
-  ${({ fullWidth }) => fullWidth && css`width: 100%;`}
+  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
+  ${({ $variant, theme }) => {
+    switch ($variant) {
+      case 'accent':
+        return `background: ${theme.colors.orange}; color: ${theme.colors.white}; border-color: ${theme.colors.orange};`;
+      case 'danger':
+        return `background: ${theme.colors.accentRed}; color: ${theme.colors.white}; border-color: ${theme.colors.accentRed};`;
+      case 'ghost':
+        return `background: transparent; color: ${theme.colors.brown}; border-color: ${theme.colors.brown};`;
+      case 'primary':
+      default:
+        return `background: ${theme.colors.brown}; color: ${theme.colors.white}; border-color: ${theme.colors.brown};`;
+    }
+  }}
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
+  transition: box-shadow 0.15s, background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
   &:hover {
     box-shadow: ${({ $withShadow }) => $withShadow !== false ? '8px 8px 0 #353C42' : 'none'};
     transform: ${({ $withShadow }) => $withShadow !== false ? 'translate(-2px, -2px)' : 'none'};
+    filter: none;
+    opacity: 0.95;
   }
   &:active {
     box-shadow: ${({ $withShadow }) => $withShadow !== false ? '2px 2px 0 #353C42' : 'none'};
     transform: none;
+    filter: none;
+    opacity: 0.92;
   }
   &:disabled {
     background: ${({ theme }) => theme.colors.blueGray};
-    color: ${({ theme }) => theme.colors.white};
-    opacity: 0.5;
+    color: ${({ theme }) => theme.colors.darkGray};
+    border-color: ${({ theme }) => theme.colors.blueGray};
     cursor: not-allowed;
+    opacity: 0.7;
   }
 `;
 
