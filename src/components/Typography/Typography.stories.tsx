@@ -17,4 +17,10 @@ export const All = () => (
       <Caption>Подпись/Caption</Caption>
     </div>
   </ThemeProvider>
+);
+
+export const TitleVariant = () => (
+  <ThemeProvider theme={theme}>
+    <Title variant="highlight">Вариант highlight</Title>
+  </ThemeProvider>
 ); 

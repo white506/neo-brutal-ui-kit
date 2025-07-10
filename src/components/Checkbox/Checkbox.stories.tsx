@@ -46,4 +46,10 @@ export const Error = Template.bind({});
 Error.args = {
   label: 'Ошибка',
   error: 'Ошибка',
+};
+
+export const VariantWarning = Template.bind({});
+VariantWarning.args = {
+  label: 'Warning variant',
+  variant: 'warning',
 }; 

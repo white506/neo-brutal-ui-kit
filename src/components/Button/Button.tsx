@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-export type ButtonVariant = 'primary' | 'accent' | 'danger' | 'ghost';
+export type ButtonVariant = 'primary' | 'accent' | 'danger' | 'ghost' | 'outline' | 'flat' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -39,6 +39,9 @@ const sizeStyles = {
 };
 
 const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
+  if (theme.variants && theme.variants.Button && theme.variants.Button[variant]) {
+    return css`${theme.variants.Button[variant]}`;
+  }
   switch (variant) {
     case 'accent':
       return css`
@@ -58,6 +61,25 @@ const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
         color: ${theme.colors.brown};
         border-color: ${theme.colors.brown};
       `;
+    case 'outline':
+      return css`
+        background: transparent;
+        color: ${theme.colors.brown};
+        border-color: ${theme.colors.brown};
+      `;
+    case 'flat':
+      return css`
+        background: none;
+        color: ${theme.colors.black};
+        border: none;
+      `;
+    case 'link':
+      return css`
+        background: none;
+        color: ${theme.colors.orange};
+        border: none;
+        text-decoration: underline;
+      `;
     case 'primary':
     default:
       return css`
@@ -70,7 +92,7 @@ const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
 
 const shadow = '4px 4px 0 #353C42';
 
-const StyledButton = styled.button<{ $variant: string; $size: string; $fullWidth?: boolean; $withShadow?: boolean }>`
+const StyledButton = styled.button<{ $variant: ButtonVariant; $size: string; $fullWidth?: boolean; $withShadow?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -84,19 +106,7 @@ const StyledButton = styled.button<{ $variant: string; $size: string; $fullWidth
   border-radius: ${({ theme }) => theme.borderRadius};
   letter-spacing: 0.04em;
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
-  ${({ $variant, theme }) => {
-    switch ($variant) {
-      case 'accent':
-        return `background: ${theme.colors.orange}; color: ${theme.colors.white}; border-color: ${theme.colors.orange};`;
-      case 'danger':
-        return `background: ${theme.colors.accentRed}; color: ${theme.colors.white}; border-color: ${theme.colors.accentRed};`;
-      case 'ghost':
-        return `background: transparent; color: ${theme.colors.brown}; border-color: ${theme.colors.brown};`;
-      case 'primary':
-      default:
-        return `background: ${theme.colors.brown}; color: ${theme.colors.white}; border-color: ${theme.colors.brown};`;
-    }
-  }}
+  ${({ $variant, theme }) => getVariantStyles($variant, theme)}
   box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
   transition: box-shadow 0.15s, background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
   &:hover {

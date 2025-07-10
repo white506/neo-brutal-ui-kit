@@ -9,6 +9,7 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
   accent?: CheckboxAccent;
   withShadow?: boolean;
   sx?: React.CSSProperties;
+  variant?: string;
 }
 
 const accentColor = (accent: CheckboxAccent | undefined, theme: any) => {
@@ -33,7 +34,7 @@ const Wrapper = styled.label`
   user-select: none;
 `;
 
-const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: CheckboxAccent; $withShadow?: boolean; $error?: boolean }>`
+const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: CheckboxAccent; $withShadow?: boolean; $error?: boolean; $variant?: string }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -55,6 +56,7 @@ const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: Che
   }
   cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
   ${({ theme }) => ((theme.overrides as any)?.Checkbox) ? (theme.overrides as any).Checkbox : ''}
+  ${({ theme, $variant }) => (theme.variants && theme.variants.Checkbox && $variant && theme.variants.Checkbox[$variant]) ? theme.variants.Checkbox[$variant] : ''}
 `;
 
 const HiddenInput = styled.input`
@@ -80,9 +82,9 @@ const Error = styled.span`
   margin-left: 12px;
 `;
 
-export const Checkbox: React.FC<CheckboxProps> = ({ label, error, accent, disabled, checked, withShadow = true, sx, ...rest }) => (
+export const Checkbox: React.FC<CheckboxProps> = ({ label, error, accent, disabled, checked, withShadow = true, sx, variant, ...rest }) => (
   <Wrapper>
-    <Box $checked={!!checked} $accent={accent as CheckboxAccent} $error={!!error} $disabled={disabled} $withShadow={withShadow} style={sx}>
+    <Box $checked={!!checked} $accent={accent as CheckboxAccent} $error={!!error} $disabled={disabled} $withShadow={withShadow} $variant={variant} style={sx}>
       <HiddenInput type="checkbox" checked={checked} disabled={disabled} {...rest} />
       <CheckMark
         $checked={!!checked}

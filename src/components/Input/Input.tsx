@@ -10,6 +10,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   withClear?: boolean;
   withShadow?: boolean;
   sx?: React.CSSProperties;
+  variant?: string;
 }
 
 const Wrapper = styled.div`
@@ -65,7 +66,8 @@ const inputBase = `
   }
 `;
 
-const StyledInput = styled.input<{ $error?: boolean; $withShadow?: boolean }>`
+const StyledInput = styled.input<{ $error?: boolean; $withShadow?: boolean; $variant?: string }>`
+  ${({ theme, $variant }) => (theme.variants && theme.variants.Input && $variant && theme.variants.Input[$variant]) ? theme.variants.Input[$variant] : ''}
   ${({ theme }) => ((theme.overrides as any)?.Input) ? (theme.overrides as any).Input : ''}
   ${({ $withShadow }) => {
     const s = $withShadow !== false ? shadow : 'none';
@@ -77,7 +79,8 @@ const StyledInput = styled.input<{ $error?: boolean; $withShadow?: boolean }>`
   border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
 `;
 
-const StyledTextarea = styled.textarea<{ $error?: boolean; $withShadow?: boolean }>`
+const StyledTextarea = styled.textarea<{ $error?: boolean; $withShadow?: boolean; $variant?: string }>`
+  ${({ theme, $variant }) => (theme.variants && theme.variants.Input && $variant && theme.variants.Input[$variant]) ? theme.variants.Input[$variant] : ''}
   ${({ theme }) => ((theme.overrides as any)?.Input) ? (theme.overrides as any).Input : ''}
   ${({ $withShadow }) => {
     const s = $withShadow !== false ? shadow : 'none';
@@ -126,6 +129,7 @@ export const Input: React.FC<InputProps> = ({
   value,
   onChange,
   sx,
+  variant,
   ...rest
 }) => {
   const isControlled = value !== undefined;
@@ -157,6 +161,7 @@ export const Input: React.FC<InputProps> = ({
           <StyledTextarea
             $error={!!error}
             $withShadow={withShadow}
+            $variant={variant}
             value={inputValue}
             onChange={handleChange}
             style={sx}
@@ -166,6 +171,7 @@ export const Input: React.FC<InputProps> = ({
           <StyledInput
             $error={!!error}
             $withShadow={withShadow}
+            $variant={variant}
             value={inputValue}
             onChange={handleChange}
             style={sx}

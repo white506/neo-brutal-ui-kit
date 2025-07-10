@@ -38,4 +38,10 @@ export const HighlightRow = () => (
       highlightRow={row => row.status === 'blocked'}
     />
   </ThemeProvider>
+);
+
+export const CompactVariant = () => (
+  <ThemeProvider theme={theme}>
+    <Table columns={columns} data={data} rowKey={row => row.id} variant="compact" />
+  </ThemeProvider>
 ); 

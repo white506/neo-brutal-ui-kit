@@ -15,6 +15,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
   options: SelectOption[];
   withShadow?: boolean;
   sx?: React.CSSProperties;
+  variant?: string;
 }
 
 const accentColor = (accent: SelectAccent | undefined, theme: any) => {
@@ -43,7 +44,8 @@ const Label = styled.label`
   color: ${({ theme }) => theme.colors.black};
 `;
 
-const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean; $withShadow?: boolean }>`
+const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean; $withShadow?: boolean; $variant?: string }>`
+  ${({ theme, $variant }) => (theme.variants && theme.variants.Select && $variant && theme.variants.Select[$variant]) ? theme.variants.Select[$variant] : ''}
   ${({ theme }) => ((theme.overrides as any)?.Select) ? (theme.overrides as any).Select : ''}
   font-family: 'IBM Plex Mono', 'Space Grotesk', Arial, sans-serif;
   font-size: 1.35rem;
@@ -80,10 +82,10 @@ const Error = styled.span`
   font-weight: ${({ theme }) => theme.fontWeightBold};
 `;
 
-export const Select: React.FC<SelectProps> = ({ label, error, accent, options, disabled, withShadow = true, sx, ...rest }) => (
+export const Select: React.FC<SelectProps> = ({ label, error, accent, options, disabled, withShadow = true, sx, variant, ...rest }) => (
   <Wrapper>
     {label && <Label>{label}</Label>}
-    <StyledSelect $accent={accent} $error={!!error} disabled={disabled} $withShadow={withShadow} style={sx} {...rest}>
+    <StyledSelect $accent={accent} $error={!!error} disabled={disabled} $withShadow={withShadow} $variant={variant} style={sx} {...rest}>
       {options.map(opt => (
         <option key={opt.value} value={opt.value}>{opt.label}</option>
       ))}

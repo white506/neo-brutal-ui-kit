@@ -56,6 +56,23 @@ export const themeDay = {
     lg: '48px',
   },
   overrides: {}, // для кастомизации компонентов
+  variants: {
+    Button: {
+      outline: `background: transparent; color: #672725; border-color: #672725;`,
+      flat: `background: none; color: #18181A; border: none;`,
+      link: `background: none; color: #F56D39; border: none; text-decoration: underline;`,
+    },
+    Avatar: {},
+    Card: {},
+    Input: {},
+    Modal: {},
+    Tooltip: {},
+    Toast: {},
+    Select: {},
+    Checkbox: {},
+    Table: {},
+    Typography: {},
+  },
 };
 
 export const themeNight = {
@@ -71,6 +88,23 @@ export const themeNight = {
     lg: '48px',
   },
   overrides: {}, // для кастомизации компонентов
+  variants: {
+    Button: {
+      outline: `background: transparent; color: #FFFFFF; border-color: #FFFFFF;`,
+      flat: `background: none; color: #F9E2B0; border: none;`,
+      link: `background: none; color: #F56D39; border: none; text-decoration: underline;`,
+    },
+    Avatar: {},
+    Card: {},
+    Input: {},
+    Modal: {},
+    Tooltip: {},
+    Toast: {},
+    Select: {},
+    Checkbox: {},
+    Table: {},
+    Typography: {},
+  },
 };
 
 export const theme = themeDay;

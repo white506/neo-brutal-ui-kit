@@ -10,6 +10,7 @@ export interface ToastProps {
   onClose?: () => void;
   withShadow?: boolean;
   sx?: React.CSSProperties;
+  variant?: string;
 }
 
 const typeColor = (type: ToastType, theme: any) => {
@@ -24,7 +25,7 @@ const typeColor = (type: ToastType, theme: any) => {
 
 const shadow = '6px 6px 0 #353C42';
 
-const ToastRoot = styled.div<{ $type: ToastType; $withShadow?: boolean }>`
+const ToastRoot = styled.div<{ $type: ToastType; $withShadow?: boolean; $variant?: string }>`
   display: flex;
   align-items: center;
   gap: 32px;
@@ -42,6 +43,7 @@ const ToastRoot = styled.div<{ $type: ToastType; $withShadow?: boolean }>`
   transition: box-shadow 0.18s, transform 0.12s;
   position: relative;
   ${({ theme }) => ((theme.overrides as any)?.Toast) ? (theme.overrides as any).Toast : ''}
+  ${({ theme, $variant }) => (theme.variants && theme.variants.Toast && $variant && theme.variants.Toast[$variant]) ? theme.variants.Toast[$variant] : ''}
 `;
 
 const ToastIcon = styled.span<{ $type: ToastType }>`
@@ -69,8 +71,8 @@ const CloseBtn = styled.button`
   margin-left: 24px;
 `;
 
-export const Toast: React.FC<ToastProps> = ({ type = 'info', message, icon, onClose, withShadow = true, sx }) => (
-  <ToastRoot $type={type} $withShadow={withShadow} style={sx}>
+export const Toast: React.FC<ToastProps> = ({ type = 'info', message, icon, onClose, withShadow = true, sx, variant }) => (
+  <ToastRoot $type={type} $withShadow={withShadow} $variant={variant} style={sx}>
     {icon && <ToastIcon $type={type}>{icon}</ToastIcon>}
     <ToastMessage>{message}</ToastMessage>
     {onClose && <CloseBtn onClick={onClose} aria-label="Закрыть">×</CloseBtn>}

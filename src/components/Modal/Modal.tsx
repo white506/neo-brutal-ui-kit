@@ -10,6 +10,7 @@ export interface ModalProps {
   background?: 'concrete';
   withShadow?: boolean;
   sx?: React.CSSProperties;
+  variant?: string;
 }
 
 const Overlay = styled.div`
@@ -70,7 +71,8 @@ const CloseBtn = styled.button`
 
 const shadow = '8px 8px 0 #353C42';
 
-const ModalContainer = styled.div<{ $withShadow?: boolean }>`
+const ModalContainer = styled.div<{ $withShadow?: boolean; $variant?: string }>`
+  ${({ theme, $variant }) => (theme.variants && theme.variants.Modal && $variant && theme.variants.Modal[$variant]) ? theme.variants.Modal[$variant] : ''}
   ${({ theme }) => ((theme.overrides as any)?.Modal) ? (theme.overrides as any).Modal : ''}
   position: relative;
   width: 100%;
@@ -78,11 +80,11 @@ const ModalContainer = styled.div<{ $withShadow?: boolean }>`
   transition: box-shadow 0.18s, transform 0.12s;
 `;
 
-export const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, background, withShadow = true, sx }) => {
+export const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, background, withShadow = true, sx, variant }) => {
   if (!open) return null;
   return (
     <Overlay data-testid="modal-overlay" onClick={onClose}>
-      <ModalContainer $withShadow={withShadow} style={sx} onClick={e => e.stopPropagation()}>
+      <ModalContainer $withShadow={withShadow} $variant={variant} style={sx} onClick={e => e.stopPropagation()}>
         <CloseBtn onClick={onClose}>X</CloseBtn>
         <ModalBox $background={background}>
           {title && <Title>{title}</Title>}

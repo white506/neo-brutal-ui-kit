@@ -144,6 +144,48 @@ const customTheme = {
 </ThemeProvider>
 ```
 
+### Пример кастомизации variants
+
+```tsx
+import { ThemeProvider } from 'styled-components';
+import { theme, Checkbox, Table, Title } from 'neo-brutal-ui';
+
+const customTheme = {
+  ...theme,
+  variants: {
+    Checkbox: {
+      warning: `
+        border: 2px dashed #F56D39 !important;
+        background: #FFF3E0 !important;
+      `,
+    },
+    Table: {
+      compact: `
+        font-size: 1.0rem !important;
+        th, td { padding: 8px 12px !important; }
+      `,
+    },
+    Title: {
+      highlight: `
+        color: #F56D39 !important;
+        text-shadow: 2px 2px 0 #222;
+      `,
+    },
+  },
+};
+
+<ThemeProvider theme={customTheme}>
+  <Checkbox variant="warning" label="Внимание" />
+  <Table
+    variant="compact"
+    columns={[{ key: 'name', title: 'Имя' }]}
+    data={[{ name: 'Тест' }]}
+    rowKey={row => row.name}
+  />
+  <Title variant="highlight">Заголовок</Title>
+</ThemeProvider>
+```
+
 ### Пример кастомизации через sx-проп
 
 ```tsx
