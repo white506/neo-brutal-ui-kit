@@ -10,6 +10,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   fullWidth?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
+  withShadow?: boolean;
 }
 
 const sizeStyles = {
@@ -66,7 +67,9 @@ const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
   }
 };
 
-const StyledButton = styled.button<ButtonProps>`
+const shadow = '4px 4px 0 #353C42';
+
+const StyledButton = styled.button<{ $variant: string; $size: string; $fullWidth?: boolean; $withShadow?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -75,15 +78,20 @@ const StyledButton = styled.button<ButtonProps>`
   text-transform: uppercase;
   border: ${({ theme }) => theme.borderWidth} solid;
   border-radius: ${({ theme }) => theme.borderRadius};
-  transition: none;
+  transition: box-shadow 0.15s, background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
   outline: none;
-  box-shadow: none;
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
   letter-spacing: 0.04em;
   ${({ size = 'md' }) => sizeStyles[size]}
   ${({ variant = 'primary', theme }) => getVariantStyles(variant, theme)}
   ${({ fullWidth }) => fullWidth && css`width: 100%;`}
+  &:hover {
+    box-shadow: ${({ $withShadow }) => $withShadow !== false ? '8px 8px 0 #353C42' : 'none'};
+    transform: ${({ $withShadow }) => $withShadow !== false ? 'translate(-2px, -2px)' : 'none'};
+  }
   &:active {
-    filter: brightness(0.85);
+    box-shadow: ${({ $withShadow }) => $withShadow !== false ? '2px 2px 0 #353C42' : 'none'};
+    transform: none;
   }
   &:disabled {
     background: ${({ theme }) => theme.colors.blueGray};
@@ -99,18 +107,6 @@ const IconWrap = styled.span`
   justify-content: center;
 `;
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  variant = 'primary',
-  size = 'md',
-  fullWidth,
-  iconLeft,
-  iconRight,
-  ...rest
-}) => (
-  <StyledButton variant={variant} size={size} fullWidth={fullWidth} {...rest}>
-    {iconLeft && <IconWrap>{iconLeft}</IconWrap>}
-    {children}
-    {iconRight && <IconWrap>{iconRight}</IconWrap>}
-  </StyledButton>
+export const Button: React.FC<ButtonProps> = ({ withShadow = true, ...props }) => (
+  <StyledButton $withShadow={withShadow} {...props} />
 ); 

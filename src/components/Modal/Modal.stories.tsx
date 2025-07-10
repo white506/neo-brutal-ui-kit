@@ -3,6 +3,7 @@ import { Modal, ModalProps } from './Modal';
 import { Button } from '../Button/Button';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'Components/Modal',
@@ -14,7 +15,7 @@ export default {
   },
 };
 
-const Template = (args: ModalProps) => {
+const Template: StoryFn<ModalProps> = (args: ModalProps) => {
   const [open, setOpen] = useState(args.open ?? false);
   return (
     <ThemeProvider theme={theme}>

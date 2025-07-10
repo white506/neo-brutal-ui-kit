@@ -68,7 +68,7 @@ export function Table<T extends object>({ columns, data, rowKey, highlightRow }:
         {data.map(row => (
           <Tr key={rowKey(row)} $highlight={highlightRow?.(row)}>
             {columns.map(col => (
-              <Td key={String(col.key)} style={{ textAlign: col.align }}>{row[col.key]}</Td>
+              <Td key={String(col.key)} style={{ textAlign: col.align }}>{String(row[col.key])}</Td>
             ))}
           </Tr>
         ))}

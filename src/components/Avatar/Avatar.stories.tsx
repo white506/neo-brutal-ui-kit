@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, AvatarProps } from './Avatar';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'Components/Avatar',
@@ -14,7 +15,7 @@ export default {
   },
 };
 
-const Template = (args: AvatarProps) => (
+const Template: StoryFn<AvatarProps> = (args: AvatarProps) => (
   <ThemeProvider theme={theme}>
     <Avatar {...args} />
   </ThemeProvider>
@@ -23,6 +24,7 @@ const Template = (args: AvatarProps) => (
 export const Initials = Template.bind({});
 Initials.args = {
   initials: 'AB',
+  size: 'md',
 };
 
 export const Accent = Template.bind({});
@@ -34,11 +36,11 @@ Accent.args = {
 export const Photo = Template.bind({});
 Photo.args = {
   src: 'https://randomuser.me/api/portraits/men/32.jpg',
-  alt: 'Фото',
+  initials: 'NB',
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  initials: 'XL',
+  initials: 'LG',
   size: 'lg',
 }; 

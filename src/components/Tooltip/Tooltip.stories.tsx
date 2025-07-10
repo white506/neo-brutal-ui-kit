@@ -3,6 +3,7 @@ import { Tooltip, TooltipProps } from './Tooltip';
 import { Button } from '../Button/Button';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'Components/Tooltip',
@@ -14,35 +15,35 @@ export default {
   },
 };
 
-const Template = (args: TooltipProps) => (
+const Template: StoryFn<TooltipProps> = (args: TooltipProps) => (
   <ThemeProvider theme={theme}>
     <Tooltip {...args}>
-      <Button variant="primary">Наведи</Button>
+      <Button>Наведи</Button>
     </Tooltip>
   </ThemeProvider>
 );
 
 export const Top = Template.bind({});
 Top.args = {
-  content: 'Tooltip сверху',
+  content: 'Сверху',
   position: 'top',
 };
 
 export const Right = Template.bind({});
 Right.args = {
-  content: 'Tooltip справа',
+  content: 'Справа',
   position: 'right',
 };
 
 export const Bottom = Template.bind({});
 Bottom.args = {
-  content: 'Tooltip снизу',
+  content: 'Снизу',
   position: 'bottom',
 };
 
 export const Left = Template.bind({});
 Left.args = {
-  content: 'Tooltip слева',
+  content: 'Слева',
   position: 'left',
 };
 

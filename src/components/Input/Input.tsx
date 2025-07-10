@@ -1,60 +1,157 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { useTheme } from 'styled-components';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
+  textarea?: boolean;
+  withClear?: boolean;
 }
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.xs};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  gap: 4px;
+  margin-bottom: 24px;
 `;
 
 const Label = styled.label`
-  font-family: ${({ theme }) => theme.fontFamilies.grotesk};
-  font-weight: ${({ theme }) => theme.fontWeightBold};
+  font-family: 'Space Grotesk', 'IBM Plex Mono', 'Monument Grotesk', Arial, sans-serif;
+  font-weight: 700;
   font-size: 1.5rem;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.brown};
+  color: #672725;
 `;
 
-const StyledInput = styled.input`
-  font-family: ${({ theme }) => theme.fontFamilies.mono};
+const InputBox = styled.div<{ $iconLeft?: boolean; $iconRight?: boolean }>`
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  flex-direction: ${({ $iconLeft }) => ($iconLeft ? 'row' : 'row-reverse')};
+`;
+
+const inputBase = `
+  font-family: 'IBM Plex Mono', 'Space Grotesk', Arial, sans-serif;
   font-size: 1.35rem;
-  font-weight: ${({ theme }) => theme.fontWeightBold};
-  color: ${({ theme }) => theme.colors.black};
-  background: ${({ theme }) => theme.colors.beige};
-  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  font-weight: 700;
+  color: #18181A;
+  background: #F9E2B0;
+  border: 2px solid #672725;
+  border-radius: 0;
   padding: 20px 32px;
   outline: none;
   box-shadow: none;
   transition: none;
   min-height: 64px;
+  width: 100%;
+
   &:focus {
-    border-color: ${({ theme }) => theme.colors.orange};
+    border-color: #F56D39;
   }
   &:disabled {
-    background: ${({ theme }) => theme.colors.blueGray};
-    color: ${({ theme }) => theme.colors.darkGray};
+    background: #8A9EA5;
+    color: #353C42;
     cursor: not-allowed;
   }
 `;
 
-const Error = styled.span`
-  color: ${({ theme }) => theme.colors.accentRed};
-  font-size: 0.95rem;
-  font-family: ${({ theme }) => theme.fontFamilies.mono};
-  font-weight: ${({ theme }) => theme.fontWeightBold};
+const StyledInput = styled.input<{ $error?: boolean }>`
+  ${inputBase}
+  border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
 `;
 
-export const Input: React.FC<InputProps> = ({ label, error, id, ...rest }) => (
-  <Wrapper>
-    {label && <Label htmlFor={id}>{label}</Label>}
-    <StyledInput id={id} {...rest} />
-    {error && <Error>{error}</Error>}
-  </Wrapper>
-); 
+const StyledTextarea = styled.textarea<{ $error?: boolean }>`
+  ${inputBase}
+  resize: vertical;
+  border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
+`;
+
+const IconBox = styled.span`
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #8A9EA5;
+`;
+
+const ClearBtn = styled.button`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8A9EA5;
+  font-size: 1.2em;
+  cursor: pointer;
+`;
+
+const ErrorText = styled.div`
+  color: #F56D39;
+  font-size: 1rem;
+  margin-top: 4px;
+`;
+
+export const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  icon,
+  iconPosition = 'left',
+  textarea,
+  withClear,
+  value,
+  onChange,
+  ...rest
+}) => {
+  const isControlled = value !== undefined;
+  const [internalValue, setInternalValue] = useState('');
+  const inputValue = isControlled ? value : internalValue;
+
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    if (!isControlled) setInternalValue(e.target.value);
+    if (onChange) onChange(e);
+  };
+
+  const handleClear = () => {
+    if (!isControlled) setInternalValue('');
+    if (onChange) {
+      const event = {
+        target: { value: '' },
+        currentTarget: { value: '' },
+      } as unknown as React.ChangeEvent<any>;
+      onChange(event);
+    }
+  };
+
+  return (
+    <Wrapper>
+      {label && <Label>{label}</Label>}
+      <InputBox $iconLeft={!!(icon && iconPosition === 'left')} $iconRight={!!(icon && iconPosition === 'right')}>
+        {icon && iconPosition === 'left' && <IconBox>{icon}</IconBox>}
+        {textarea ? (
+          <StyledTextarea
+            $error={!!error}
+            value={inputValue}
+            onChange={handleChange}
+            {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+          />
+        ) : (
+          <StyledInput
+            $error={!!error}
+            value={inputValue}
+            onChange={handleChange}
+            {...rest}
+          />
+        )}
+        {withClear && inputValue && (
+          <ClearBtn type="button" aria-label="очистить" onClick={handleClear}>
+            ×
+          </ClearBtn>
+        )}
+        {icon && iconPosition === 'right' && <IconBox>{icon}</IconBox>}
+      </InputBox>
+      {error && <ErrorText>{error}</ErrorText>}
+    </Wrapper>
+  );
+}; 

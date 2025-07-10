@@ -9,3 +9,4 @@ export * from './components/Avatar';
 export * from './components/Checkbox';
 export * from './components/Table';
 export * from './components/Typography';
+export * from './icons';

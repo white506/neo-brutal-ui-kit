@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Select, SelectProps, SelectOption } from './Select';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { StoryFn } from '@storybook/react';
 
 const options: SelectOption[] = [
   { value: '', label: 'Выберите вариант' },
@@ -22,7 +23,7 @@ export default {
   },
 };
 
-const Template = (args: SelectProps) => {
+const Template: StoryFn<SelectProps> = (args: SelectProps) => {
   const [value, setValue] = useState(args.value || '');
   return (
     <ThemeProvider theme={theme}>
@@ -38,8 +39,8 @@ Default.args = {
 
 export const Accent = Template.bind({});
 Accent.args = {
-  label: 'С акцентом',
-  accent: 'blue',
+  label: 'Accent',
+  accent: 'orange',
 };
 
 export const Disabled = Template.bind({});
@@ -51,5 +52,5 @@ Disabled.args = {
 export const Error = Template.bind({});
 Error.args = {
   label: 'Ошибка',
-  error: 'Ошибка выбора',
+  error: 'Ошибка',
 }; 

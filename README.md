@@ -1,47 +1,29 @@
-# Neo Brutal UI Kit
+# neo-brutal-ui-kit
 
-Библиотека UI-компонентов в стиле архитектурного брутализма на React + TypeScript + Styled Components.
+[![storybook](https://img.shields.io/badge/storybook-online-orange)](https://white506.github.io/neo-brutal-ui-kit)
 
-## Палитра (актуальная)
-- Коричневый: `#672725`
-- Оранжевый: `#F56D39`
-- Бежевый: `#F9E2B0`
-- Серо-голубой: `#8A9EA5`
-- Тёмно-серый: `#353C42`
-- Чёрный: `#18181A`
-- Белый: `#FFFFFF`
+## Документация
 
-### Старые акценты (для обратной совместимости)
-- Accent Orange: `#FF4D00`
-- Accent Blue: `#429EFF`
-- Accent Red: `#D30000`
-
-### Старые серые
-- Серые: `#F4F4F4` — `#1F1F1F`
+Онлайн Storybook: [https://white506.github.io/neo-brutal-ui-kit](https://white506.github.io/neo-brutal-ui-kit)
 
 ## Установка
+
 ```bash
-npm install neo-brutal-ui-kit
+npm i @white506/neo-brutal-ui
 ```
 
 ## Использование
-```tsx
-import { Button } from 'neo-brutal-ui-kit';
 
-<Button variant="accent">Жми грубо</Button>
+```tsx
+import { Button, Input, Modal, Card, Tooltip, Toast, Select, Avatar, Checkbox, Table, Icon } from '@white506/neo-brutal-ui';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '@white506/neo-brutal-ui';
+
+<ThemeProvider theme={theme}>
+  <Button>Пример</Button>
+</ThemeProvider>
 ```
 
-## Компоненты
-- Button
-- Input
-- Modal
-- Card
-- Tooltip
-- Toast
-- Select
-- Avatar
-- Checkbox
-- Table
+## Документация компонентов
 
-## Лицензия
-MIT
+Смотри интерактивные примеры и все пропсы в [Storybook](https://white506.github.io/neo-brutal-ui-kit)

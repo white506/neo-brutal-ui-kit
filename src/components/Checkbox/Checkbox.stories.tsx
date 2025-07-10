@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Checkbox, CheckboxProps } from './Checkbox';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'Components/Checkbox',
@@ -15,7 +16,7 @@ export default {
   },
 };
 
-const Template = (args: CheckboxProps) => {
+const Template: StoryFn<CheckboxProps> = (args: CheckboxProps) => {
   const [checked, setChecked] = useState(!!args.checked);
   return (
     <ThemeProvider theme={theme}>
@@ -31,7 +32,7 @@ Default.args = {
 
 export const Accent = Template.bind({});
 Accent.args = {
-  label: 'Оранжевый',
+  label: 'Accent',
   accent: 'orange',
 };
 
@@ -44,5 +45,5 @@ Disabled.args = {
 export const Error = Template.bind({});
 Error.args = {
   label: 'Ошибка',
-  error: 'Ошибка выбора',
+  error: 'Ошибка',
 }; 

@@ -3,6 +3,7 @@ import { Card, CardProps } from './Card';
 import { Button } from '../Button/Button';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'Components/Card',
@@ -14,7 +15,7 @@ export default {
   },
 };
 
-const Template = (args: CardProps) => (
+const Template: StoryFn<CardProps> = (args: CardProps) => (
   <ThemeProvider theme={theme}>
     <Card {...args} />
   </ThemeProvider>
@@ -48,7 +49,5 @@ WithActions.args = {
 export const Concrete = Template.bind({});
 Concrete.args = {
   title: 'Бетон',
-  subtitle: 'Фон с текстурой',
   children: 'Карточка с бетонной текстурой',
-  background: 'concrete',
 }; 

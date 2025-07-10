@@ -8,6 +8,7 @@ export interface TooltipProps {
   position?: TooltipPosition;
   accent?: 'orange' | 'blue' | 'red';
   children: ReactNode;
+  withShadow?: boolean;
 }
 
 const accentColor = (accent: TooltipProps['accent'], theme: any) => {
@@ -19,12 +20,14 @@ const accentColor = (accent: TooltipProps['accent'], theme: any) => {
   }
 };
 
+const shadow = '4px 4px 0 #353C42';
+
 const TooltipWrapper = styled.span`
   position: relative;
   display: inline-block;
 `;
 
-const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['accent'] }>`
+const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['accent']; $withShadow?: boolean }>`
   position: absolute;
   z-index: 100;
   min-width: 180px;
@@ -37,7 +40,8 @@ const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProp
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-size: 1.2rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
-  box-shadow: none;
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
+  transition: box-shadow 0.18s, transform 0.12s;
   text-transform: none;
   pointer-events: none;
   white-space: pre-line;
@@ -61,7 +65,7 @@ const Arrow = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['ac
   ${({ $position }) => $position === 'right' && css`left: -10px; top: 50%; transform: translateY(-50%) rotate(45deg); border-bottom: none; border-left: none;`}
 `;
 
-export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', accent, children }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', accent, children, withShadow = true }) => {
   const [visible, setVisible] = useState(false);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -83,7 +87,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', acc
     >
       {children}
       {visible && (
-        <TooltipBox $position={position} $accent={accent}>
+        <TooltipBox $withShadow={withShadow} $accent={accent} $position={position} role="tooltip">
           {content}
           <Arrow $position={position} $accent={accent} />
         </TooltipBox>

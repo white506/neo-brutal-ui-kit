@@ -8,6 +8,7 @@ export interface ModalProps {
   title?: string;
   children: React.ReactNode;
   background?: 'concrete';
+  withShadow?: boolean;
 }
 
 const Overlay = styled.div`
@@ -66,16 +67,20 @@ const CloseBtn = styled.button`
   z-index: 1;
 `;
 
-const ModalContainer = styled.div`
+const shadow = '8px 8px 0 #353C42';
+
+const ModalContainer = styled.div<{ $withShadow?: boolean }>`
   position: relative;
   width: 100%;
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
+  transition: box-shadow 0.18s, transform 0.12s;
 `;
 
-export const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, background }) => {
+export const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, background, withShadow = true }) => {
   if (!open) return null;
   return (
-    <Overlay onClick={onClose}>
-      <ModalContainer onClick={e => e.stopPropagation()}>
+    <Overlay data-testid="modal-overlay" onClick={onClose}>
+      <ModalContainer $withShadow={withShadow} onClick={e => e.stopPropagation()}>
         <CloseBtn onClick={onClose}>X</CloseBtn>
         <ModalBox $background={background}>
           {title && <Title>{title}</Title>}
