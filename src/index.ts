@@ -7,4 +7,4 @@ export * from './components/Toast';
 // export * from './components/Select';
 // export * from './components/Avatar';
 // export * from './components/Checkbox';
-// export * from './components/Table';
+export * from './components/Table';
