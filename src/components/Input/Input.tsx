@@ -8,6 +8,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   iconPosition?: 'left' | 'right';
   textarea?: boolean;
   withClear?: boolean;
+  withShadow?: boolean;
 }
 
 const Wrapper = styled.div`
@@ -32,6 +33,8 @@ const InputBox = styled.div<{ $iconLeft?: boolean; $iconRight?: boolean }>`
   flex-direction: ${({ $iconLeft }) => ($iconLeft ? 'row' : 'row-reverse')};
 `;
 
+const shadow = '2px 2px 0 #353C42';
+
 const inputBase = `
   font-family: 'IBM Plex Mono', 'Space Grotesk', Arial, sans-serif;
   font-size: 1.35rem;
@@ -42,13 +45,17 @@ const inputBase = `
   border-radius: 0;
   padding: 20px 32px;
   outline: none;
-  box-shadow: none;
-  transition: none;
+  box-shadow: VAR_SHADOW;
+  transition: box-shadow 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
   min-height: 64px;
   width: 100%;
 
   &:focus {
     border-color: #F56D39;
+    box-shadow: VAR_SHADOW_FOCUS;
+  }
+  &:hover {
+    box-shadow: VAR_SHADOW_HOVER;
   }
   &:disabled {
     background: #8A9EA5;
@@ -57,13 +64,25 @@ const inputBase = `
   }
 `;
 
-const StyledInput = styled.input<{ $error?: boolean }>`
-  ${inputBase}
+const StyledInput = styled.input<{ $error?: boolean; $withShadow?: boolean }>`
+  ${({ $withShadow }) => {
+    const s = $withShadow !== false ? shadow : 'none';
+    return inputBase
+      .replace(/VAR_SHADOW/g, s)
+      .replace(/VAR_SHADOW_FOCUS/g, $withShadow !== false ? '4px 4px 0 #353C42' : 'none')
+      .replace(/VAR_SHADOW_HOVER/g, $withShadow !== false ? '3px 3px 0 #353C42' : 'none');
+  }}
   border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
 `;
 
-const StyledTextarea = styled.textarea<{ $error?: boolean }>`
-  ${inputBase}
+const StyledTextarea = styled.textarea<{ $error?: boolean; $withShadow?: boolean }>`
+  ${({ $withShadow }) => {
+    const s = $withShadow !== false ? shadow : 'none';
+    return inputBase
+      .replace(/VAR_SHADOW/g, s)
+      .replace(/VAR_SHADOW_FOCUS/g, $withShadow !== false ? '4px 4px 0 #353C42' : 'none')
+      .replace(/VAR_SHADOW_HOVER/g, $withShadow !== false ? '3px 3px 0 #353C42' : 'none');
+  }}
   resize: vertical;
   border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
 `;
@@ -100,6 +119,7 @@ export const Input: React.FC<InputProps> = ({
   iconPosition = 'left',
   textarea,
   withClear,
+  withShadow = true,
   value,
   onChange,
   ...rest
@@ -132,6 +152,7 @@ export const Input: React.FC<InputProps> = ({
         {textarea ? (
           <StyledTextarea
             $error={!!error}
+            $withShadow={withShadow}
             value={inputValue}
             onChange={handleChange}
             {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
@@ -139,6 +160,7 @@ export const Input: React.FC<InputProps> = ({
         ) : (
           <StyledInput
             $error={!!error}
+            $withShadow={withShadow}
             value={inputValue}
             onChange={handleChange}
             {...rest}
