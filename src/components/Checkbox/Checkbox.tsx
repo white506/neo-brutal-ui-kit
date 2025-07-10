@@ -7,6 +7,7 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
   label?: string;
   error?: string;
   accent?: CheckboxAccent;
+  withShadow?: boolean;
 }
 
 const accentColor = (accent: CheckboxAccent | undefined, theme: any) => {
@@ -17,6 +18,8 @@ const accentColor = (accent: CheckboxAccent | undefined, theme: any) => {
     default: return theme.colors.brown;
   }
 };
+
+const shadow = '2px 2px 0 #353C42';
 
 const Wrapper = styled.label`
   display: flex;
@@ -29,7 +32,7 @@ const Wrapper = styled.label`
   user-select: none;
 `;
 
-const Box = styled.span<{ $checked: boolean; $accent?: CheckboxAccent; $error?: boolean; $disabled?: boolean }>`
+const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: string; $withShadow?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -43,8 +46,12 @@ const Box = styled.span<{ $checked: boolean; $accent?: CheckboxAccent; $error?: 
       : `${theme.borderWidth} solid ${accentColor($accent, theme)}`};
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme, $disabled }) => $disabled ? theme.colors.blueGray : theme.colors.beige};
-  transition: none;
-  box-shadow: none;
+  transition: box-shadow 0.15s, border-color 0.15s, background 0.15s, color 0.15s, transform 0.12s;
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
+  &:hover {
+    box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
+    transform: ${({ $withShadow }) => $withShadow !== false ? 'translate(-1px, -1px)' : 'none'};
+  }
   cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
 `;
 
@@ -71,9 +78,9 @@ const Error = styled.span`
   margin-left: 12px;
 `;
 
-export const Checkbox: React.FC<CheckboxProps> = ({ label, error, accent, disabled, checked, ...rest }) => (
+export const Checkbox: React.FC<CheckboxProps> = ({ label, error, accent, disabled, checked, withShadow = true, ...rest }) => (
   <Wrapper>
-    <Box $checked={!!checked} $accent={accent} $error={!!error} $disabled={disabled}>
+    <Box $checked={!!checked} $accent={accent} $error={!!error} $disabled={disabled} $withShadow={withShadow}>
       <HiddenInput type="checkbox" checked={checked} disabled={disabled} {...rest} />
       <CheckMark
         $checked={!!checked}
