@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from '../../theme/theme';
 
 export interface ModalProps {
   open: boolean;
@@ -20,39 +19,39 @@ const Overlay = styled.div`
 `;
 
 const ModalBox = styled.div`
-  background: ${theme.colors.white};
-  color: ${theme.colors.black};
-  border: ${theme.borderWidth} solid ${theme.colors.black};
-  border-radius: ${theme.borderRadius};
+  background: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.black};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border-radius: ${({ theme }) => theme.borderRadius};
   min-width: 400px;
   max-width: 90vw;
   min-height: 200px;
-  padding: ${theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.lg};
   box-shadow: none;
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing.md};
+  gap: ${({ theme }) => theme.spacing.md};
 `;
 
 const Title = styled.div`
-  font-family: ${theme.fontFamilies.grotesk};
+  font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-size: 2rem;
-  font-weight: ${theme.fontWeightBold};
+  font-weight: ${({ theme }) => theme.fontWeightBold};
   text-transform: uppercase;
-  margin-bottom: ${theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
 const CloseBtn = styled.button`
   position: absolute;
   top: 24px;
   right: 32px;
-  background: ${theme.colors.accentRed};
-  color: ${theme.colors.white};
-  border: ${theme.borderWidth} solid ${theme.colors.black};
-  border-radius: ${theme.borderRadius};
+  background: ${({ theme }) => theme.colors.accentRed};
+  color: ${({ theme }) => theme.colors.white};
+  border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  border-radius: ${({ theme }) => theme.borderRadius};
   font-size: 1.2rem;
-  font-family: ${theme.fontFamilies.grotesk};
-  font-weight: ${theme.fontWeightBold};
+  font-family: ${({ theme }) => theme.fontFamilies.grotesk};
+  font-weight: ${({ theme }) => theme.fontWeightBold};
   padding: 4px 16px;
   cursor: pointer;
   outline: none;
