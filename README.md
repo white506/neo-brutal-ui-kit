@@ -64,11 +64,12 @@ import { theme, GlobalStyle } from 'neo-brutal-ui';
 
 ## Темизация и кастомизация
 
+- **Поддержка тем:** бетон-день и бетон-ночь (ThemeSwitcher)
 - **Палитра:** brown, orange, beige, blueGray, darkGray, black, white
 - **Тема:**
   ```ts
-  import { theme } from 'neo-brutal-ui';
-  // theme.colors, theme.fontFamilies, theme.spacing, theme.borderRadius
+  import { themeDay, themeNight } from 'neo-brutal-ui';
+  // themeDay.colors, themeNight.colors
   ```
 - **Глобальные стили:**
   ```ts
@@ -77,6 +78,26 @@ import { theme, GlobalStyle } from 'neo-brutal-ui';
 - **withShadow:** любой компонент можно сделать плоским: `<Button withShadow={false} />`
 - **accent:** для выделения (accent="orange" | "blue" | "red")
 - **size:** для Button, Avatar, Typography
+
+### Пример переключения темы
+
+```tsx
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { themeDay, themeNight, GlobalStyle, ThemeSwitcher, Button } from 'neo-brutal-ui';
+
+const App = () => {
+  const [mode, setMode] = useState<'day' | 'night'>('day');
+  const theme = mode === 'night' ? themeNight : themeDay;
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <ThemeSwitcher themeMode={mode} onToggle={() => setMode(mode === 'day' ? 'night' : 'day')} />
+      <Button>Пример</Button>
+    </ThemeProvider>
+  );
+};
+```
 
 ---
 

@@ -20,12 +20,30 @@ export const colors = {
   white: '#FFFFFF',
 };
 
+export const colorsNight = {
+  brown: '#2D1A13',
+  orange: '#F56D39',
+  beige: '#2B2320',
+  blueGray: '#4A5A60',
+  darkGray: '#18181A',
+  black: '#FFFFFF',
+  accentOrange: '#FF4D00',
+  accentBlue: '#429EFF',
+  accentRed: '#D30000',
+  gray100: '#353C42',
+  gray200: '#2B2320',
+  gray300: '#18181A',
+  gray400: '#8A9EA5',
+  gray500: '#F9E2B0',
+  white: '#18181A',
+};
+
 export const fontFamilies = {
   grotesk: 'Space Grotesk, IBM Plex Mono, Monument Grotesk, Arial, sans-serif',
   mono: 'IBM Plex Mono, monospace',
 };
 
-export const theme = {
+export const themeDay = {
   colors,
   fontFamilies,
   fontWeightBold: 700,
@@ -38,5 +56,21 @@ export const theme = {
     lg: '48px',
   },
 };
+
+export const themeNight = {
+  colors: colorsNight,
+  fontFamilies,
+  fontWeightBold: 700,
+  borderRadius: '0px',
+  borderWidth: '3px',
+  spacing: {
+    xs: '4px',
+    sm: '8px',
+    md: '24px',
+    lg: '48px',
+  },
+};
+
+export const theme = themeDay;
 
 export type Theme = typeof theme;
