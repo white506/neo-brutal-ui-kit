@@ -44,13 +44,13 @@ const StyledButton = styled.button<ButtonProps>`
   justify-content: center;
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-weight: ${({ theme }) => theme.fontWeightBold};
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   text-transform: uppercase;
   border: ${({ theme }) => theme.borderWidth} solid;
   border-radius: ${({ theme }) => theme.borderRadius};
-  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.md};
-  min-height: 48px;
-  min-width: 120px;
+  padding: 20px 48px;
+  min-height: 72px;
+  min-width: 200px;
   cursor: pointer;
   transition: none;
   outline: none;

@@ -23,22 +23,22 @@ const ModalBox = styled.div`
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.borderRadius};
-  min-width: 400px;
+  min-width: 600px;
   max-width: 90vw;
-  min-height: 200px;
-  padding: ${({ theme }) => theme.spacing.lg};
+  min-height: 320px;
+  padding: 64px;
   box-shadow: none;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
+  gap: 48px;
 `;
 
 const Title = styled.div`
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   text-transform: uppercase;
-  margin-bottom: ${({ theme }) => theme.spacing.md};
+  margin-bottom: 48px;
 `;
 
 const CloseBtn = styled.button`

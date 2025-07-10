@@ -16,24 +16,24 @@ const Wrapper = styled.div`
 const Label = styled.label`
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-weight: ${({ theme }) => theme.fontWeightBold};
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.black};
 `;
 
 const StyledInput = styled.input`
   font-family: ${({ theme }) => theme.fontFamilies.mono};
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   color: ${({ theme }) => theme.colors.black};
   background: ${({ theme }) => theme.colors.white};
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.borderRadius};
-  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.md};
+  padding: 20px 32px;
   outline: none;
   box-shadow: none;
   transition: none;
-  min-height: 44px;
+  min-height: 64px;
   &:focus {
     border-color: ${({ theme }) => theme.colors.accentBlue};
   }

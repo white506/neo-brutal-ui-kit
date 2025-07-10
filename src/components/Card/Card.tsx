@@ -14,18 +14,18 @@ const CardRoot = styled.div`
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.borderRadius};
-  padding: ${({ theme }) => theme.spacing.lg};
+  padding: 48px;
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-  min-width: 320px;
+  gap: 40px;
+  min-width: 480px;
   max-width: 100%;
   box-shadow: none;
 `;
 
 const CardTitle = styled.div`
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   text-transform: uppercase;
 `;
@@ -45,8 +45,15 @@ const CardContent = styled.div`
 
 const CardActions = styled.div`
   display: flex;
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-top: ${({ theme }) => theme.spacing.md};
+  gap: 32px;
+  margin-top: 40px;
+  border-top: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
+  padding-top: 24px;
+  margin-left: -48px;
+  margin-right: -48px;
+  padding-left: 48px;
+  padding-right: 48px;
+  background: ${({ theme }) => theme.colors.gray100};
 `;
 
 export const Card: React.FC<CardProps> = ({ title, subtitle, children, actions, className }) => (
