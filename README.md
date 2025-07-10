@@ -142,3 +142,24 @@ const customTheme = {
 ## Лицензия
 
 MIT
+
+---
+
+## Генератор компонентов
+
+Быстро создавай новый компонент по FSD-структуре:
+
+```bash
+yarn create:component
+# или
+npm run create:component
+```
+
+- Введи имя компонента (PascalCase)
+- Будет создана папка src/components/ИмяКомпонента с файлами:
+  - ИмяКомпонента.tsx (boilerplate)
+  - index.ts (экспорт)
+  - ИмяКомпонента.stories.tsx (Storybook)
+  - ИмяКомпонента.test.tsx (тест)
+
+---
