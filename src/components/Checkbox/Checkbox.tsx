@@ -32,7 +32,7 @@ const Wrapper = styled.label`
   user-select: none;
 `;
 
-const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: string; $withShadow?: boolean }>`
+const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: CheckboxAccent; $withShadow?: boolean; $error?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -80,7 +80,7 @@ const Error = styled.span`
 
 export const Checkbox: React.FC<CheckboxProps> = ({ label, error, accent, disabled, checked, withShadow = true, ...rest }) => (
   <Wrapper>
-    <Box $checked={!!checked} $accent={accent} $error={!!error} $disabled={disabled} $withShadow={withShadow}>
+    <Box $checked={!!checked} $accent={accent as CheckboxAccent} $error={!!error} $disabled={disabled} $withShadow={withShadow}>
       <HiddenInput type="checkbox" checked={checked} disabled={disabled} {...rest} />
       <CheckMark
         $checked={!!checked}

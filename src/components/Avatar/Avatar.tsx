@@ -30,7 +30,7 @@ const sizeMap = {
 
 const shadow = '2px 2px 0 #353C42';
 
-const AvatarRoot = styled.div<{ $size: 'md' | 'lg'; $accent?: string; $withShadow?: boolean }>`
+const AvatarRoot = styled.div<{ $size: 'md' | 'lg'; $accent?: AvatarAccent; $withShadow?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +63,7 @@ const Img = styled.img`
 `;
 
 export const Avatar: React.FC<AvatarProps> = ({ src, alt, initials, accent, size = 'md', className, withShadow = true, ...props }) => (
-  <AvatarRoot $accent={accent} $size={size} className={className} $withShadow={withShadow} {...props}>
+  <AvatarRoot $accent={accent as AvatarAccent} $size={size} className={className} $withShadow={withShadow} {...props}>
     {src ? <Img src={src} alt={alt || 'avatar'} /> : (initials || '?')}
   </AvatarRoot>
 ); 

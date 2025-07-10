@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { concreteTexture } from '../../theme/concreteTexture';
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   children: React.ReactNode;
@@ -10,6 +10,8 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   background?: 'concrete';
   withShadow?: boolean;
+  // остальные пропсы div
+  [key: string]: any;
 }
 
 const shadow = '6px 6px 0 #353C42';
