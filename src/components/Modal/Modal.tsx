@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { concreteTexture } from '../../theme/concreteTexture';
 
 export interface ModalProps {
   open: boolean;
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
+  background?: 'concrete';
 }
 
 const Overlay = styled.div`
@@ -18,8 +20,11 @@ const Overlay = styled.div`
   justify-content: center;
 `;
 
-const ModalBox = styled.div`
-  background: ${({ theme }) => theme.colors.white};
+const ModalBox = styled.div<{ $background?: 'concrete' }>`
+  background: ${({ theme, $background }) =>
+    $background === 'concrete'
+      ? `${theme.colors.white} ${concreteTexture} repeat`
+      : theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -31,6 +36,8 @@ const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
+  background-blend-mode: multiply;
+  opacity: 0.98;
 `;
 
 const Title = styled.div`
@@ -64,13 +71,13 @@ const ModalContainer = styled.div`
   width: 100%;
 `;
 
-export const Modal: React.FC<ModalProps> = ({ open, onClose, title, children }) => {
+export const Modal: React.FC<ModalProps> = ({ open, onClose, title, children, background }) => {
   if (!open) return null;
   return (
     <Overlay onClick={onClose}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <CloseBtn onClick={onClose}>X</CloseBtn>
-        <ModalBox>
+        <ModalBox $background={background}>
           {title && <Title>{title}</Title>}
           {children}
         </ModalBox>

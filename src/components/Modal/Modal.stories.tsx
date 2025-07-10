@@ -31,4 +31,12 @@ Default.args = {
   title: 'Заголовок',
   open: false,
   children: 'Контент модального окна',
+};
+
+export const Concrete = Template.bind({});
+Concrete.args = {
+  title: 'Бетон',
+  open: true,
+  children: 'Модалка с бетонной текстурой',
+  background: 'concrete',
 }; 
