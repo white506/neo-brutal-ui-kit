@@ -43,4 +43,12 @@ WithActions.args = {
   title: 'Заголовок',
   children: 'Карточка с actions',
   actions: <Button variant="accent">Действие</Button>,
+};
+
+export const Concrete = Template.bind({});
+Concrete.args = {
+  title: 'Бетон',
+  subtitle: 'Фон с текстурой',
+  children: 'Карточка с бетонной текстурой',
+  background: 'concrete',
 }; 

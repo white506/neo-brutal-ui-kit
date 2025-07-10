@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { concreteTexture } from '../../theme/concreteTexture';
 
 export interface CardProps {
   title?: React.ReactNode;
@@ -7,10 +8,14 @@ export interface CardProps {
   children: React.ReactNode;
   actions?: React.ReactNode;
   className?: string;
+  background?: 'concrete';
 }
 
-const CardRoot = styled.div`
-  background: ${({ theme }) => theme.colors.white};
+const CardRoot = styled.div<{ $background?: 'concrete' }>`
+  background: ${({ theme, $background }) =>
+    $background === 'concrete'
+      ? `${theme.colors.white} ${concreteTexture} repeat`
+      : theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -21,6 +26,8 @@ const CardRoot = styled.div`
   min-width: 480px;
   max-width: 100%;
   box-shadow: none;
+  background-blend-mode: multiply;
+  opacity: 0.98;
 `;
 
 const CardTitle = styled.div`
@@ -56,8 +63,8 @@ const CardActions = styled.div`
   background: ${({ theme }) => theme.colors.gray100};
 `;
 
-export const Card: React.FC<CardProps> = ({ title, subtitle, children, actions, className }) => (
-  <CardRoot className={className}>
+export const Card: React.FC<CardProps> = ({ title, subtitle, children, actions, className, background }) => (
+  <CardRoot className={className} $background={background}>
     {title && <CardTitle>{title}</CardTitle>}
     {subtitle && <CardSubtitle>{subtitle}</CardSubtitle>}
     <CardContent>{children}</CardContent>
