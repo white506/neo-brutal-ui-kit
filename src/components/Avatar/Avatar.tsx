@@ -4,13 +4,14 @@ import styled, { css } from 'styled-components';
 export type AvatarAccent = 'orange' | 'blue' | 'red';
 export type AvatarSize = 'md' | 'lg';
 
-export interface AvatarProps {
+export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   initials?: string;
   accent?: AvatarAccent;
   size?: AvatarSize;
   className?: string;
+  withShadow?: boolean;
 }
 
 const accentColor = (accent: AvatarAccent | undefined, theme: any) => {
@@ -27,7 +28,9 @@ const sizeMap = {
   lg: 96,
 };
 
-const Root = styled.div<{ $accent?: AvatarAccent; $size: AvatarSize }>`
+const shadow = '2px 2px 0 #353C42';
+
+const AvatarRoot = styled.div<{ $size: 'md' | 'lg'; $accent?: string; $withShadow?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -44,6 +47,12 @@ const Root = styled.div<{ $accent?: AvatarAccent; $size: AvatarSize }>`
   font-weight: ${({ theme }) => theme.fontWeightBold};
   color: ${({ theme, $accent }) => accentColor($accent, theme)};
   user-select: none;
+  box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
+  transition: box-shadow 0.15s, transform 0.12s;
+  &:hover {
+    box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
+    transform: ${({ $withShadow }) => $withShadow !== false ? 'translate(-1px, -1px)' : 'none'};
+  }
 `;
 
 const Img = styled.img`
@@ -53,8 +62,8 @@ const Img = styled.img`
   display: block;
 `;
 
-export const Avatar: React.FC<AvatarProps> = ({ src, alt, initials, accent, size = 'md', className }) => (
-  <Root $accent={accent} $size={size} className={className}>
+export const Avatar: React.FC<AvatarProps> = ({ src, alt, initials, accent, size = 'md', className, withShadow = true, ...props }) => (
+  <AvatarRoot $accent={accent} $size={size} className={className} $withShadow={withShadow} {...props}>
     {src ? <Img src={src} alt={alt || 'avatar'} /> : (initials || '?')}
-  </Root>
+  </AvatarRoot>
 ); 
