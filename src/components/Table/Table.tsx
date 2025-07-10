@@ -14,6 +14,7 @@ export interface TableProps<T> {
   data: T[];
   rowKey: (row: T) => string | number;
   highlightRow?: (row: T) => boolean;
+  sx?: React.CSSProperties;
 }
 
 const TableRoot = styled.table`
@@ -26,6 +27,7 @@ const TableRoot = styled.table`
   font-weight: ${({ theme }) => theme.fontWeightBold};
   color: ${({ theme }) => theme.colors.black};
   box-shadow: none;
+  ${({ theme }) => ((theme.overrides as any)?.Table) ? (theme.overrides as any).Table : ''}
 `;
 
 const Th = styled.th<{ $accent?: boolean }>`
@@ -54,9 +56,9 @@ const Tr = styled.tr<{ $highlight?: boolean }>`
   `}
 `;
 
-export function Table<T extends object>({ columns, data, rowKey, highlightRow }: TableProps<T>) {
+export function Table<T extends object>({ columns, data, rowKey, highlightRow, sx }: TableProps<T>) {
   return (
-    <TableRoot>
+    <TableRoot style={sx}>
       <thead>
         <tr>
           {columns.map(col => (

@@ -55,6 +55,7 @@ export const themeDay = {
     md: '24px',
     lg: '48px',
   },
+  overrides: {}, // для кастомизации компонентов
 };
 
 export const themeNight = {
@@ -69,6 +70,7 @@ export const themeNight = {
     md: '24px',
     lg: '48px',
   },
+  overrides: {}, // для кастомизации компонентов
 };
 
 export const theme = themeDay;

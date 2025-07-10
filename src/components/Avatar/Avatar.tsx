@@ -12,6 +12,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: AvatarSize;
   className?: string;
   withShadow?: boolean;
+  sx?: React.CSSProperties;
 }
 
 const accentColor = (accent: AvatarAccent | undefined, theme: any) => {
@@ -53,6 +54,7 @@ const AvatarRoot = styled.div<{ $size: 'md' | 'lg'; $accent?: AvatarAccent; $wit
     box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
     transform: ${({ $withShadow }) => $withShadow !== false ? 'translate(-1px, -1px)' : 'none'};
   }
+  ${({ theme }) => ((theme.overrides as any)?.Avatar) ? (theme.overrides as any).Avatar : ''}
 `;
 
 const Img = styled.img`
@@ -62,8 +64,8 @@ const Img = styled.img`
   display: block;
 `;
 
-export const Avatar: React.FC<AvatarProps> = ({ src, alt, initials, accent, size = 'md', className, withShadow = true, ...props }) => (
-  <AvatarRoot $accent={accent as AvatarAccent} $size={size} className={className} $withShadow={withShadow} {...props}>
+export const Avatar: React.FC<AvatarProps> = ({ src, alt, initials, accent, size = 'md', className, withShadow = true, sx, ...props }) => (
+  <AvatarRoot $accent={accent as AvatarAccent} $size={size} className={className} $withShadow={withShadow} style={sx} {...props}>
     {src ? <Img src={src} alt={alt || 'avatar'} /> : (initials || '?')}
   </AvatarRoot>
 ); 

@@ -9,6 +9,7 @@ export interface ToastProps {
   icon?: React.ReactNode;
   onClose?: () => void;
   withShadow?: boolean;
+  sx?: React.CSSProperties;
 }
 
 const typeColor = (type: ToastType, theme: any) => {
@@ -40,6 +41,7 @@ const ToastRoot = styled.div<{ $type: ToastType; $withShadow?: boolean }>`
   box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
   transition: box-shadow 0.18s, transform 0.12s;
   position: relative;
+  ${({ theme }) => ((theme.overrides as any)?.Toast) ? (theme.overrides as any).Toast : ''}
 `;
 
 const ToastIcon = styled.span<{ $type: ToastType }>`
@@ -67,8 +69,8 @@ const CloseBtn = styled.button`
   margin-left: 24px;
 `;
 
-export const Toast: React.FC<ToastProps> = ({ type = 'info', message, icon, onClose, withShadow = true }) => (
-  <ToastRoot $type={type} $withShadow={withShadow}>
+export const Toast: React.FC<ToastProps> = ({ type = 'info', message, icon, onClose, withShadow = true, sx }) => (
+  <ToastRoot $type={type} $withShadow={withShadow} style={sx}>
     {icon && <ToastIcon $type={type}>{icon}</ToastIcon>}
     <ToastMessage>{message}</ToastMessage>
     {onClose && <CloseBtn onClick={onClose} aria-label="Закрыть">×</CloseBtn>}

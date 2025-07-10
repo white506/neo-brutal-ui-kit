@@ -122,6 +122,36 @@ const customTheme = {
 </ThemeProvider>
 ```
 
+### Пример кастомизации через theme.overrides
+
+```tsx
+import { ThemeProvider } from 'styled-components';
+import { themeDay, Button } from 'neo-brutal-ui';
+
+const customTheme = {
+  ...themeDay,
+  overrides: {
+    Button: `
+      background: #222 !important;
+      color: #F56D39 !important;
+      border-radius: 12px !important;
+    `,
+  },
+};
+
+<ThemeProvider theme={customTheme}>
+  <Button>Кастомная кнопка</Button>
+</ThemeProvider>
+```
+
+### Пример кастомизации через sx-проп
+
+```tsx
+<Button sx={{ background: '#222', color: '#F56D39', borderRadius: 12 }}>
+  Inline-кастомизация
+</Button>
+```
+
 ---
 
 ## Тесты и качество

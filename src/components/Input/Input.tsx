@@ -9,6 +9,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   textarea?: boolean;
   withClear?: boolean;
   withShadow?: boolean;
+  sx?: React.CSSProperties;
 }
 
 const Wrapper = styled.div`
@@ -65,6 +66,7 @@ const inputBase = `
 `;
 
 const StyledInput = styled.input<{ $error?: boolean; $withShadow?: boolean }>`
+  ${({ theme }) => ((theme.overrides as any)?.Input) ? (theme.overrides as any).Input : ''}
   ${({ $withShadow }) => {
     const s = $withShadow !== false ? shadow : 'none';
     return inputBase
@@ -76,6 +78,7 @@ const StyledInput = styled.input<{ $error?: boolean; $withShadow?: boolean }>`
 `;
 
 const StyledTextarea = styled.textarea<{ $error?: boolean; $withShadow?: boolean }>`
+  ${({ theme }) => ((theme.overrides as any)?.Input) ? (theme.overrides as any).Input : ''}
   ${({ $withShadow }) => {
     const s = $withShadow !== false ? shadow : 'none';
     return inputBase
@@ -122,6 +125,7 @@ export const Input: React.FC<InputProps> = ({
   withShadow = true,
   value,
   onChange,
+  sx,
   ...rest
 }) => {
   const isControlled = value !== undefined;
@@ -155,6 +159,7 @@ export const Input: React.FC<InputProps> = ({
             $withShadow={withShadow}
             value={inputValue}
             onChange={handleChange}
+            style={sx}
             {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
           />
         ) : (
@@ -163,6 +168,7 @@ export const Input: React.FC<InputProps> = ({
             $withShadow={withShadow}
             value={inputValue}
             onChange={handleChange}
+            style={sx}
             {...rest}
           />
         )}

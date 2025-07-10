@@ -9,6 +9,7 @@ export interface TooltipProps {
   accent?: 'orange' | 'blue' | 'red';
   children: ReactNode;
   withShadow?: boolean;
+  sx?: React.CSSProperties;
 }
 
 const accentColor = (accent: TooltipProps['accent'], theme: any) => {
@@ -28,6 +29,7 @@ const TooltipWrapper = styled.span`
 `;
 
 const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['accent']; $withShadow?: boolean }>`
+  ${({ theme }) => ((theme.overrides as any)?.Tooltip) ? (theme.overrides as any).Tooltip : ''}
   position: absolute;
   z-index: 100;
   min-width: 180px;
@@ -65,7 +67,7 @@ const Arrow = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['ac
   ${({ $position }) => $position === 'right' && css`left: -10px; top: 50%; transform: translateY(-50%) rotate(45deg); border-bottom: none; border-left: none;`}
 `;
 
-export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', accent, children, withShadow = true }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', accent, children, withShadow = true, sx }) => {
   const [visible, setVisible] = useState(false);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -87,7 +89,7 @@ export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', acc
     >
       {children}
       {visible && (
-        <TooltipBox $withShadow={withShadow} $accent={accent} $position={position} role="tooltip">
+        <TooltipBox $withShadow={withShadow} $accent={accent} $position={position} style={sx} role="tooltip">
           {content}
           <Arrow $position={position} $accent={accent} />
         </TooltipBox>

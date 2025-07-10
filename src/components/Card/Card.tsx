@@ -10,6 +10,7 @@ export interface CardProps {
   className?: string;
   background?: 'concrete';
   withShadow?: boolean;
+  sx?: React.CSSProperties;
   // остальные пропсы div
   [key: string]: any;
 }
@@ -17,6 +18,7 @@ export interface CardProps {
 const shadow = '6px 6px 0 #353C42';
 
 const StyledCard = styled.div<{ $background?: 'concrete', $withShadow?: boolean }>`
+  ${({ theme }) => ((theme.overrides as any)?.Card) ? (theme.overrides as any).Card : ''}
   background: ${({ theme, $background }) =>
     $background === 'concrete'
       ? `${theme.colors.beige} ${concreteTexture} repeat`
@@ -73,8 +75,8 @@ const CardActions = styled.div`
   background: ${({ theme }) => theme.colors.blueGray};
 `;
 
-export const Card: React.FC<CardProps> = ({ title, subtitle, children, actions, className, background, withShadow = true, ...props }) => (
-  <StyledCard className={className} $background={background} $withShadow={withShadow} {...props}>
+export const Card: React.FC<CardProps> = ({ title, subtitle, children, actions, className, background, withShadow = true, sx, ...props }) => (
+  <StyledCard className={className} $background={background} $withShadow={withShadow} style={sx} {...props}>
     {title && <CardTitle>{title}</CardTitle>}
     {subtitle && <CardSubtitle>{subtitle}</CardSubtitle>}
     <CardContent>{children}</CardContent>

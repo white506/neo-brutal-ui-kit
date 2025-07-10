@@ -11,6 +11,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   withShadow?: boolean;
+  sx?: React.CSSProperties;
 }
 
 const sizeStyles = {
@@ -117,6 +118,7 @@ const StyledButton = styled.button<{ $variant: string; $size: string; $fullWidth
     cursor: not-allowed;
     opacity: 0.7;
   }
+  ${({ theme }) => ((theme.overrides as any)?.Button) ? (theme.overrides as any).Button : ''}
 `;
 
 const IconWrap = styled.span`
@@ -133,6 +135,7 @@ export const Button: React.FC<ButtonProps> = ({
   iconLeft,
   iconRight,
   withShadow = true,
+  sx,
   ...rest
 }) => (
   <StyledButton
@@ -140,6 +143,7 @@ export const Button: React.FC<ButtonProps> = ({
     $size={size}
     $fullWidth={fullWidth}
     $withShadow={withShadow}
+    style={sx}
     {...rest}
   >
     {iconLeft && <IconWrap>{iconLeft}</IconWrap>}
