@@ -14,7 +14,7 @@
 ### Установка
 
 ```bash
-npm i @white506/neo-brutal-ui styled-components
+npm i neo-brutal-ui styled-components
 ```
 
 > **PeerDependencies:**
@@ -24,9 +24,9 @@ npm i @white506/neo-brutal-ui styled-components
 ### Использование
 
 ```tsx
-import { Button, Input, Modal, Card, Tooltip, Toast, Select, Avatar, Checkbox, Table, Typography } from '@white506/neo-brutal-ui';
+import { Button, Input, Modal, Card, Tooltip, Toast, Select, Avatar, Checkbox, Table, Typography } from 'neo-brutal-ui';
 import { ThemeProvider } from 'styled-components';
-import { theme, GlobalStyle } from '@white506/neo-brutal-ui';
+import { theme, GlobalStyle } from 'neo-brutal-ui';
 
 <ThemeProvider theme={theme}>
   <GlobalStyle />
@@ -67,12 +67,12 @@ import { theme, GlobalStyle } from '@white506/neo-brutal-ui';
 - **Палитра:** brown, orange, beige, blueGray, darkGray, black, white
 - **Тема:**
   ```ts
-  import { theme } from '@white506/neo-brutal-ui';
+  import { theme } from 'neo-brutal-ui';
   // theme.colors, theme.fontFamilies, theme.spacing, theme.borderRadius
   ```
 - **Глобальные стили:**
   ```ts
-  import { GlobalStyle } from '@white506/neo-brutal-ui';
+  import { GlobalStyle } from 'neo-brutal-ui';
   ```
 - **withShadow:** любой компонент можно сделать плоским: `<Button withShadow={false} />`
 - **accent:** для выделения (accent="orange" | "blue" | "red")
@@ -85,7 +85,7 @@ import { theme, GlobalStyle } from '@white506/neo-brutal-ui';
 ```tsx
 // Кастомная тема
 import { ThemeProvider } from 'styled-components';
-import { theme } from '@white506/neo-brutal-ui';
+import { theme } from 'neo-brutal-ui';
 
 const customTheme = {
   ...theme,
