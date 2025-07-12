@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 
 export type CheckboxAccent = 'orange' | 'blue' | 'red';
 
@@ -12,7 +12,7 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
   variant?: string;
 }
 
-const accentColor = (accent: CheckboxAccent | undefined, theme: any) => {
+const accentColor = (accent: CheckboxAccent | undefined, theme: DefaultTheme) => {
   switch (accent) {
     case 'orange': return theme.colors.orange;
     case 'blue': return theme.colors.blueGray;
@@ -55,7 +55,7 @@ const Box = styled.span<{ $checked?: boolean; $disabled?: boolean; $accent?: Che
     transform: ${({ $withShadow }) => $withShadow !== false ? 'translate(-1px, -1px)' : 'none'};
   }
   cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
-  ${({ theme }) => ((theme.overrides as any)?.Checkbox) ? (theme.overrides as any).Checkbox : ''}
+  ${({ theme }) => ((theme.overrides as Record<string, unknown>)?.Checkbox) ? (theme.overrides as Record<string, unknown>).Checkbox : ''}
   ${({ theme, $variant }) => (theme.variants && theme.variants.Checkbox && $variant && theme.variants.Checkbox[$variant]) ? theme.variants.Checkbox[$variant] : ''}
 `;
 

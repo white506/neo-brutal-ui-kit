@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 export type ButtonVariant = 'primary' | 'accent' | 'danger' | 'ghost' | 'outline' | 'flat' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -14,31 +14,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   sx?: React.CSSProperties;
 }
 
-const sizeStyles = {
-  sm: css`
-    font-size: 1rem;
-    padding: 12px 24px;
-    min-height: 40px;
-    min-width: 80px;
-    gap: 8px;
-  `,
-  md: css`
-    font-size: 1.35rem;
-    padding: 20px 48px;
-    min-height: 72px;
-    min-width: 200px;
-    gap: 16px;
-  `,
-  lg: css`
-    font-size: 2rem;
-    padding: 32px 64px;
-    min-height: 96px;
-    min-width: 280px;
-    gap: 24px;
-  `,
-};
-
-const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
+const getVariantStyles = (variant: ButtonVariant = 'primary', theme: DefaultTheme) => {
   if (theme.variants && theme.variants.Button && theme.variants.Button[variant]) {
     return css`${theme.variants.Button[variant]}`;
   }
@@ -90,18 +66,25 @@ const getVariantStyles = (variant: ButtonVariant = 'primary', theme: any) => {
   }
 };
 
-const shadow = '4px 4px 0 #353C42';
-
-const StyledButton = styled.button<{ $variant: ButtonVariant; $size: string; $fullWidth?: boolean; $withShadow?: boolean }>`
+const StyledButton = styled.button<{
+  $variant: ButtonVariant;
+  $size: string;
+  $fullWidth?: boolean;
+  $withShadow?: boolean;
+}>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: ${({ $size }) =>
+    $size === 'sm' ? '8px' : $size === 'lg' ? '24px' : '16px'};
   font-family: ${({ theme }) => theme.fontFamilies.grotesk};
   font-weight: ${({ theme }) => theme.fontWeightBold};
   font-size: ${({ $size }) =>
     $size === 'sm' ? '1.1rem' : $size === 'lg' ? '1.7rem' : '1.35rem'};
-  padding: ${({ $size }) =>
-    $size === 'sm' ? '12px 24px' : $size === 'lg' ? '28px 48px' : '20px 32px'};
+  height: ${({ $size }) =>
+    $size === 'sm' ? '40px' : $size === 'lg' ? '96px' : '72px'};
+  padding: 0 ${({ $size }) =>
+    $size === 'sm' ? '24px' : $size === 'lg' ? '48px' : '45px'};
   border: ${({ theme }) => theme.borderWidth} solid;
   border-radius: ${({ theme }) => theme.borderRadius};
   letter-spacing: 0.04em;
@@ -128,7 +111,7 @@ const StyledButton = styled.button<{ $variant: ButtonVariant; $size: string; $fu
     cursor: not-allowed;
     opacity: 0.7;
   }
-  ${({ theme }) => ((theme.overrides as any)?.Button) ? (theme.overrides as any).Button : ''}
+  ${({ theme }) => ((theme.overrides as Record<string, unknown>)?.Button) ? (theme.overrides as Record<string, unknown>).Button : ''}
 `;
 
 const IconWrap = styled.span`

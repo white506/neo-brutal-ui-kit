@@ -1,41 +1,27 @@
 export const colors = {
-  // Новая палитра
-  brown: '#672725',
-  orange: '#F56D39',
-  beige: '#F9E2B0',
-  blueGray: '#8A9EA5',
-  darkGray: '#353C42',
-  black: '#18181A',
-  // Старые акценты (оставляю для обратной совместимости)
-  accentOrange: '#FF4D00',
-  accentBlue: '#429EFF',
-  accentRed: '#D30000',
-  // Старые серые
-  gray100: '#F4F4F4',
-  gray200: '#E0E0E0',
-  gray300: '#BDBDBD',
-  gray400: '#828282',
-  gray500: '#1F1F1F',
-  // Белый
-  white: '#FFFFFF',
+  brown: '#4B2E05', // Pantone 4975 C
+  orange: '#FF6F00', // Pantone 1585 C
+  beige: '#F9E2B0', // Pantone 7401 C
+  blueGray: '#4A5A60', // Pantone 7545 C
+  darkGray: '#353C42', // Pantone 432 C
+  black: '#18181A', // Pantone Black 6 C
+  white: '#FFFFFF', // Pantone 11-0601 TCX
+  accentRed: '#D72631', // Pantone 1795 C
+  accentGreen: '#2ECC40', // Pantone 7737 C
+  accentBlue: '#429EFF', // Pantone 2175 C
 };
 
 export const colorsNight = {
-  brown: '#2D1A13',
-  orange: '#F56D39',
+  brown: '#4B2E05',
+  orange: '#FF6F00',
   beige: '#2B2320',
   blueGray: '#4A5A60',
   darkGray: '#18181A',
   black: '#FFFFFF',
-  accentOrange: '#FF4D00',
-  accentBlue: '#429EFF',
-  accentRed: '#D30000',
-  gray100: '#353C42',
-  gray200: '#2B2320',
-  gray300: '#18181A',
-  gray400: '#8A9EA5',
-  gray500: '#F9E2B0',
   white: '#18181A',
+  accentRed: '#D72631',
+  accentGreen: '#2ECC40',
+  accentBlue: '#429EFF',
 };
 
 export const fontFamilies = {

@@ -36430,7 +36430,7 @@ Symbol]")
       "%encodeURIComponent%": encodeURIComponent,
       "%Error%": o,
       "%eval%": eval,
-      // eslint-disable-line no-eval
+       
       "%EvalError%": i,
       "%Float16Array%": typeof Float16Array > "u" ? r : Float16Array,
       "%Float32Array%": typeof Float32Array > "u" ? r : Float32Array,
@@ -51582,7 +51582,7 @@ var { VERSIONCHECK: QIe } = Z, jK = (0, BK.default)(1)(() => {
       if (i) {
         if (!i.version || !s.version)
           return !0;
-        let u = !!An.default.prerelease(s.version) ? `${An.default.major(s.version)}.${An.default.minor(s.version)}.${An.default.patch(
+        let u = An.default.prerelease(s.version) ? `${An.default.major(s.version)}.${An.default.minor(s.version)}.${An.default.patch(
           s.version
         )}` : s.version, c = An.default.diff(u, i.version);
         return An.default.gt(i.version, u) && c !== "patch" && !c.includes("pre");
@@ -53074,7 +53074,7 @@ function kX({
   maxArrayLength: i = 1 / 0,
   breakLength: s = 1 / 0,
   seen: l = [],
-  // eslint-disable-next-line no-shadow
+   
   truncate: u = 1 / 0,
   stylize: c = String
 } = {}, d) {
@@ -55389,7 +55389,7 @@ function $J({
   maxArrayLength: i = 1 / 0,
   breakLength: s = 1 / 0,
   seen: l = [],
-  // eslint-disable-next-line no-shadow
+   
   truncate: u = 1 / 0,
   stylize: c = String
 } = {}, d) {
@@ -55952,7 +55952,7 @@ function Dm(e, t, r) {
 a(Dm, "deepEqual");
 F(Dm, "deepEqual");
 function FI(e, t) {
-  return e === t ? e !== 0 || 1 / e === 1 / t : e !== e && // eslint-disable-line no-self-compare
+  return e === t ? e !== 0 || 1 / e === 1 / t : e !== e &&  
   t !== t ? !0 : nu(e) || nu(t) ? !1 : null;
 }
 a(FI, "simpleEqual");
@@ -58913,9 +58913,9 @@ var $Ne = /* @__PURE__ */ function() {
 function qt(e) {
   var t;
   return (
-    // eslint-disable-next-line no-restricted-properties -- actual guard for environments without localName
+     
     (t = e.localName) !== null && t !== void 0 ? t : (
-      // eslint-disable-next-line no-restricted-properties -- required for the fallback
+       
       e.tagName.toLowerCase()
     )
   );
@@ -59567,7 +59567,7 @@ var G8 = class G8 extends Error {
         ""
       ),
       "",
-      // eslint-disable-next-line new-cap
+       
       `${o.utils.RECEIVED_COLOR(
         "received"
       )} value must ${t}.`,
@@ -59614,9 +59614,9 @@ var X8 = class X8 extends Error {
     super(), Error.captureStackTrace && Error.captureStackTrace(this, r), this.message = [
       t.message,
       "",
-      // eslint-disable-next-line new-cap
+       
       n.utils.RECEIVED_COLOR("Failing css:"),
-      // eslint-disable-next-line new-cap
+       
       n.utils.RECEIVED_COLOR(`${t.css}`)
     ].join(`
 `);
@@ -59650,12 +59650,12 @@ function gr(e, t, r, n, o, i) {
   return [
     `${t}
 `,
-    // eslint-disable-next-line new-cap
+     
     `${r}:
 ${e.utils.EXPECTED_COLOR(
       (0, E8.default)(Zae(e, n), 2)
     )}`,
-    // eslint-disable-next-line new-cap
+     
     `${o}:
 ${e.utils.RECEIVED_COLOR(
       (0, E8.default)(Zae(e, i), 2)
@@ -59768,7 +59768,7 @@ in element, found ${this.utils.stringify(
         ""
       ),
       "",
-      // eslint-disable-next-line new-cap
+       
       this.utils.RECEIVED_COLOR(this.isNot ? r() : n())
     ].join(`
 `), "message")
@@ -59826,7 +59826,7 @@ function l2(e, t) {
         "element"
       ),
       "",
-      // eslint-disable-next-line new-cap
+       
       this.utils.RECEIVED_COLOR(`${this.utils.stringify(
         e.cloneNode(!1)
       )} ${this.isNot ? "contains:" : "does not contain:"} ${this.utils.stringify(t && t.cloneNode(!1))}
@@ -59853,7 +59853,7 @@ function P8(e, t) {
         ""
       ),
       "Expected:",
-      // eslint-disable-next-line new-cap
+       
       `  ${this.utils.EXPECTED_COLOR(t)}`,
       "Received:",
       `  ${this.utils.printReceived(e.cloneNode(!0))}`
@@ -62952,9 +62952,9 @@ var OYe = /* @__PURE__ */ function() {
 function Vt(e) {
   var t;
   return (
-    // eslint-disable-next-line no-restricted-properties -- actual guard for environments without localName
+     
     (t = e.localName) !== null && t !== void 0 ? t : (
-      // eslint-disable-next-line no-restricted-properties -- required for the fallback
+       
       e.tagName.toLowerCase()
     )
   );
@@ -63692,7 +63692,7 @@ function eN() {
   return typeof jest < "u" && jest !== null ? (
     // legacy timers
     setTimeout._isMockFunction === !0 || // modern timers
-    // eslint-disable-next-line prefer-object-has-own -- not supported by our support matrix
+     
     Object.prototype.hasOwnProperty.call(setTimeout, "clock")
   ) : !1;
 }
@@ -63873,7 +63873,7 @@ a(Yde, "getLabels");
 function Kde(e) {
   if (e == null)
     throw new Error(
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- implicitly converting `T` to `string`
+       
       "It looks like " + e + " was passed instead of a matcher. Did you do something like getByText(" + e + ")?"
     );
 }
@@ -64436,7 +64436,7 @@ var Fs = /* @__PURE__ */ a((e, t, r) => function(n) {
     if (
       // only want to suggest if all the els have the same suggestion.
       c.length === 1 && !t.endsWith(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- TODO: Can this be null at runtime?
+         
         BS(l[0], r).queryName
       )
     )

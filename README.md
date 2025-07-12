@@ -196,6 +196,26 @@ const customTheme = {
 
 ---
 
+## Примеры форм
+
+### Пример формы с валидацией
+
+```tsx
+import { Form, FormField, PasswordInput, Input, Button } from 'neo-brutal-ui';
+
+<Form onSubmit={e => { e.preventDefault(); /* handle */ }}>
+  <FormField label="Email" helper="Введите email">
+    <Input name="email" />
+  </FormField>
+  <FormField label="Пароль" error="Пароль слишком короткий">
+    <PasswordInput name="password" />
+  </FormField>
+  <Button type="submit">Войти</Button>
+</Form>
+```
+
+---
+
 ## Тесты и качество
 
 - Покрытие тестами: Button, Input, Modal, Card, Checkbox, Toast, Tooltip, Table
@@ -216,6 +236,14 @@ const customTheme = {
 MIT
 
 ---
+
+## Документация по дизайну и UX
+
+- [Тон коммуникации](./docs/tone.md)
+- [UX-паттерны](./docs/ux-patterns.md)
+- [Анимации](./docs/animation.md)
+- [Формы и валидация](./docs/forms.md)
+- [Интернационализация (i18n)](./docs/i18n.md)
 
 ## Иконки
 

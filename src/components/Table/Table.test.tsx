@@ -7,11 +7,11 @@ import { theme } from '../../theme/theme';
 type Row = { id: number; name: string; };
 const columns = [
   { key: 'id', title: 'ID' },
-  { key: 'name', title: 'Имя' },
+  { key: 'name', title: 'Name' },
 ];
 const data = [
-  { id: 1, name: 'Иван' },
-  { id: 2, name: 'Ольга' },
+  { id: 1, name: 'Ivan' },
+  { id: 2, name: 'Olga' },
 ];
 
 describe('Table', () => {
@@ -22,21 +22,21 @@ describe('Table', () => {
       </ThemeProvider>
     );
 
-  it('рендерит строки', () => {
+  it('renders rows', () => {
     renderTable();
-    expect(screen.getByText('Иван')).toBeInTheDocument();
-    expect(screen.getByText('Ольга')).toBeInTheDocument();
+    expect(screen.getByText('Ivan')).toBeInTheDocument();
+    expect(screen.getByText('Olga')).toBeInTheDocument();
   });
 
-  it('выделяет строку (highlightRow)', () => {
+  it('highlights row (highlightRow)', () => {
     renderTable({ highlightRow: row => row.id === 2 });
-    const row = screen.getByText('Ольга').closest('tr');
+    const row = screen.getByText('Olga').closest('tr');
     // Проверяем, что стиль применён (blueGray)
-    expect(row).toHaveStyle({ background: '#8A9EA5' });
+    expect(row).toHaveStyle({ background: '#4A5A60' });
   });
 
   // Если есть сортировка, добавить тест на клик по заголовку
-  it('сортирует по столбцу (если есть сортировка)', () => {
+  it('sorts by column (if sorting is supported)', () => {
     // Если Table поддерживает сортировку, реализовать тест
     // fireEvent.click(screen.getByText('ID'));
     // expect(...).toBe(...)

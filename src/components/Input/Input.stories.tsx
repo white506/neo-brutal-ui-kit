@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Input, InputProps } from './Input';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
+import { MinusIcon } from '../../icons';
 import { StoryFn } from '@storybook/react';
 
 const Icon = () => (
-  <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M8 12h8" /></svg>
+  <MinusIcon width={24} height={24} />
 );
 
 export default {
@@ -36,26 +37,26 @@ const Template: StoryFn<InputProps> = (args: InputProps) => {
 export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
-  placeholder: 'Введите текст',
+  placeholder: 'Enter text',
 };
 
 export const WithIcon = Template.bind({});
 WithIcon.args = {
-  label: 'С иконкой',
+  label: 'With icon',
   icon: <Icon />,
   iconPosition: 'left',
 };
 
 export const WithClear = Template.bind({});
 WithClear.args = {
-  label: 'С очисткой',
+  label: 'With clear',
   withClear: true,
-  value: 'Текст',
+  value: 'Text',
 };
 
 export const Textarea = Template.bind({});
 Textarea.args = {
   label: 'Textarea',
   textarea: true,
-  placeholder: 'Введите много текста',
+  placeholder: 'Enter a lot of text',
 }; 

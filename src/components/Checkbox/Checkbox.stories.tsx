@@ -27,7 +27,7 @@ const Template: StoryFn<CheckboxProps> = (args: CheckboxProps) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  label: 'Чекбокс',
+  label: 'Checkbox',
 };
 
 export const Accent = Template.bind({});
@@ -44,8 +44,8 @@ Disabled.args = {
 
 export const Error = Template.bind({});
 Error.args = {
-  label: 'Ошибка',
-  error: 'Ошибка',
+  label: 'Error',
+  error: 'Error',
 };
 
 export const VariantWarning = Template.bind({});

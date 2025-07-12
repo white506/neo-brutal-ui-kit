@@ -1,5 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { InfoIcon } from '../../icons/info';
+import { CheckIcon } from '../../icons/check';
+import { WarningIcon } from '../../icons/warning';
+import { CloseIcon } from '../../icons/close';
 
 export type ToastType = 'info' | 'success' | 'error' | 'warning';
 
@@ -28,10 +32,10 @@ const shadow = '6px 6px 0 #353C42';
 const ToastRoot = styled.div<{ $type: ToastType; $withShadow?: boolean; $variant?: string }>`
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
   min-width: 400px;
   max-width: 600px;
-  padding: 32px 48px;
+  padding: 15px 24px;
   background: ${({ theme }) => theme.colors.beige};
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme, $type }) => theme.borderWidth} solid ${({ theme, $type }) => typeColor($type, theme)};
@@ -71,10 +75,20 @@ const CloseBtn = styled.button`
   margin-left: 24px;
 `;
 
+const getDefaultIcon = (type: ToastType) => {
+  switch (type) {
+    case 'success': return <CheckIcon width={28} height={28} />;
+    case 'warning': return <WarningIcon width={28} height={28} />;
+    case 'error': return <CloseIcon width={28} height={28} />;
+    case 'info':
+    default: return <InfoIcon width={28} height={28} />;
+  }
+};
+
 export const Toast: React.FC<ToastProps> = ({ type = 'info', message, icon, onClose, withShadow = true, sx, variant }) => (
   <ToastRoot $type={type} $withShadow={withShadow} $variant={variant} style={sx}>
-    {icon && <ToastIcon $type={type}>{icon}</ToastIcon>}
+    <ToastIcon $type={type}>{icon ?? getDefaultIcon(type)}</ToastIcon>
     <ToastMessage>{message}</ToastMessage>
-    {onClose && <CloseBtn onClick={onClose} aria-label="Закрыть">×</CloseBtn>}
+    {onClose && <CloseBtn onClick={onClose} aria-label="Close">×</CloseBtn>}
   </ToastRoot>
 ); 

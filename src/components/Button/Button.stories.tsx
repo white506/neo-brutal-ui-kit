@@ -63,7 +63,7 @@ FullWidth.args = {
 
 export const WithIcons = Template.bind({});
 WithIcons.args = {
-  children: 'С иконками',
+  children: 'With icons',
   iconLeft: <Icon name="search" />,
   iconRight: <Icon name="close" />,
 };

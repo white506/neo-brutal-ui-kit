@@ -15,6 +15,7 @@ export * from './edit';
 export * from './trash';
 export * from './bell';
 export * from './eye';
+export * from './eye-off';
 export * from './lock';
 export * from './unlock';
 export * from './calendar';

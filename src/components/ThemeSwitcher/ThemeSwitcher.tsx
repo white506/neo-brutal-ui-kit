@@ -23,8 +23,8 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ themeMode, onToggl
       transition: 'all 0.15s',
       margin: 0,
     }}
-    aria-label="Переключить тему"
+    aria-label="Toggle theme"
   >
-    {themeMode === 'night' ? 'Бетон-день' : 'Бетон-ночь'}
+    {themeMode === 'night' ? 'Concrete Day' : 'Concrete Night'}
   </button>
 ); 

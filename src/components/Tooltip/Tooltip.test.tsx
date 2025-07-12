@@ -14,24 +14,26 @@ const renderTooltip = (props: Partial<TooltipProps> = {}) =>
   );
 
 describe('Tooltip', () => {
-  it('не отображает контент по умолчанию', () => {
+  it('по умолчанию tooltip скрыт (opacity: 0)', () => {
     renderTooltip();
-    expect(screen.queryByText('Подсказка')).not.toBeInTheDocument();
+    const tooltip = screen.getByRole('tooltip');
+    expect(tooltip).toHaveStyle({ opacity: '0' });
   });
 
-  it('отображает контент при hover', async () => {
+  it('отображает tooltip при hover (opacity: 1)', async () => {
     jest.useFakeTimers();
     renderTooltip();
     fireEvent.mouseOver(screen.getByText('Наведи'));
     await act(async () => {
       jest.advanceTimersByTime(100);
     });
-    expect(await screen.findByText('Подсказка')).toBeInTheDocument();
+    const tooltip = screen.getByRole('tooltip');
+    expect(tooltip).toHaveStyle({ opacity: '1' });
     fireEvent.mouseOut(screen.getByText('Наведи'));
     await act(async () => {
       jest.advanceTimersByTime(100);
     });
-    expect(screen.queryByText('Подсказка')).not.toBeInTheDocument();
+    expect(tooltip).toHaveStyle({ opacity: '0' });
     jest.useRealTimers();
   });
 }); 

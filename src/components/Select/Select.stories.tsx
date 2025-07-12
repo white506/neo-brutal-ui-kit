@@ -1,56 +1,72 @@
 import React, { useState } from 'react';
-import { Select, SelectProps, SelectOption } from './Select';
+import { CustomSelect, CustomSelectOption } from './CustomSelect';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
-import { StoryFn } from '@storybook/react';
-
-const options: SelectOption[] = [
-  { value: '', label: 'Выберите вариант' },
-  { value: 'one', label: 'Вариант 1' },
-  { value: 'two', label: 'Вариант 2' },
-  { value: 'three', label: 'Вариант 3' },
-];
 
 export default {
-  title: 'Components/Select',
-  component: Select,
-  argTypes: {
-    label: { control: 'text' },
-    error: { control: 'text' },
-    accent: { control: 'select', options: ['orange', 'blue', 'red', undefined] },
-    disabled: { control: 'boolean' },
-    value: { control: 'text' },
-  },
+  title: 'Components/CustomSelect',
+  component: CustomSelect,
 };
 
-const Template: StoryFn<SelectProps> = (args: SelectProps) => {
-  const [value, setValue] = useState(args.value || '');
+const customOptions: CustomSelectOption[] = [
+  { value: '', label: 'Select option' },
+  { value: 'one', label: 'Option 1' },
+  { value: 'two', label: 'Option 2' },
+  { value: 'three', label: 'Option 3' },
+];
+
+export const Default = () => {
+  const [value, setValue] = useState('');
   return (
     <ThemeProvider theme={theme}>
-      <Select {...args} value={value} onChange={e => setValue(e.target.value)} options={options} />
+      <CustomSelect
+        label="CustomSelect (custom)"
+        options={customOptions}
+        value={value}
+        onChange={setValue}
+      />
     </ThemeProvider>
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Выбор',
+export const Accent = () => {
+  const [value, setValue] = useState('');
+  return (
+    <ThemeProvider theme={theme}>
+      <CustomSelect
+        label="Accent"
+        options={customOptions}
+        value={value}
+        onChange={setValue}
+        accent="orange"
+      />
+    </ThemeProvider>
+  );
 };
 
-export const Accent = Template.bind({});
-Accent.args = {
-  label: 'Accent',
-  accent: 'orange',
-};
+export const Disabled = () => (
+  <ThemeProvider theme={theme}>
+    <CustomSelect
+      label="Disabled"
+      options={customOptions}
+      value={''}
+      onChange={() => {}}
+      disabled
+    />
+  </ThemeProvider>
+);
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Disabled',
-  disabled: true,
-};
-
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Ошибка',
-  error: 'Ошибка',
+export const Error = () => {
+  const [value, setValue] = useState('');
+  return (
+    <ThemeProvider theme={theme}>
+      <CustomSelect
+        label="Error"
+        options={customOptions}
+        value={value}
+        onChange={setValue}
+        error="Selection error"
+      />
+    </ThemeProvider>
+  );
 }; 

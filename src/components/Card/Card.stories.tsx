@@ -23,31 +23,32 @@ const Template: StoryFn<CardProps> = (args: CardProps) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Контент карточки',
+  children: 'Card content',
 };
 
 export const WithTitle = Template.bind({});
 WithTitle.args = {
-  title: 'Заголовок',
-  children: 'Карточка с заголовком',
+  title: 'Title',
+  children: 'Card with title',
 };
 
 export const WithSubtitle = Template.bind({});
 WithSubtitle.args = {
-  title: 'Заголовок',
-  subtitle: 'Подзаголовок',
-  children: 'Карточка с заголовком и подзаголовком',
+  title: 'Title',
+  subtitle: 'Subtitle',
+  children: 'Card with title and subtitle',
 };
 
 export const WithActions = Template.bind({});
 WithActions.args = {
-  title: 'Заголовок',
-  children: 'Карточка с actions',
-  actions: <Button variant="accent">Действие</Button>,
+  title: 'Title',
+  children: 'Card with actions',
+  actions: <Button variant="accent">Action</Button>,
 };
 
 export const Concrete = Template.bind({});
 Concrete.args = {
-  title: 'Бетон',
-  children: 'Карточка с бетонной текстурой',
+  title: 'Concrete',
+  children: 'Card with concrete texture',
+  background: 'concrete', // now will have concrete background
 }; 

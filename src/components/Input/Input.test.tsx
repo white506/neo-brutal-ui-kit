@@ -5,16 +5,16 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
 
 describe('Input', () => {
-  it('рендерит label', () => {
+  it('renders label', () => {
     render(
       <ThemeProvider theme={theme}>
-        <Input label="Лейбл" />
+        <Input label="Label" />
       </ThemeProvider>
     );
-    expect(screen.getByText('Лейбл')).toBeInTheDocument();
+    expect(screen.getByText('Label')).toBeInTheDocument();
   });
 
-  it('работает ввод значения', () => {
+  it('inputs value', () => {
     render(
       <ThemeProvider theme={theme}>
         <Input placeholder="test" />
@@ -25,7 +25,7 @@ describe('Input', () => {
     expect((input as HTMLInputElement).value).toBe('123');
   });
 
-  it('рендерит textarea', () => {
+  it('renders textarea', () => {
     render(
       <ThemeProvider theme={theme}>
         <Input textarea placeholder="area" />
@@ -34,7 +34,7 @@ describe('Input', () => {
     expect(screen.getByPlaceholderText('area')).toBeInTheDocument();
   });
 
-  it('очищает значение при withClear', () => {
+  it('clears value with withClear', () => {
     const Wrapper = () => {
       const [val, setVal] = React.useState('abc');
       return (
@@ -44,7 +44,7 @@ describe('Input', () => {
       );
     };
     render(<Wrapper />);
-    const clearBtn = screen.getByRole('button', { name: /очистить/i });
+    const clearBtn = screen.getByRole('button', { name: /clear/i });
     fireEvent.click(clearBtn);
     expect((screen.getByRole('textbox') as HTMLInputElement).value).toBe('');
   });

@@ -23,23 +23,23 @@ const Template: StoryFn<ToastProps> = (args: ToastProps) => (
 export const Info = Template.bind({});
 Info.args = {
   type: 'info',
-  message: 'Информационный тост',
+  message: 'Info toast',
 };
 
 export const Success = Template.bind({});
 Success.args = {
   type: 'success',
-  message: 'Успешно!',
+  message: 'Success!',
 };
 
 export const Error = Template.bind({});
 Error.args = {
   type: 'error',
-  message: 'Ошибка!',
+  message: 'Error!',
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   type: 'warning',
-  message: 'Внимание!',
+  message: 'Warning!',
 }; 

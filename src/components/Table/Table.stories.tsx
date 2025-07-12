@@ -7,15 +7,15 @@ type User = { id: number; name: string; email: string; status: string };
 
 const columns: TableColumn<User>[] = [
   { key: 'id', title: 'ID', width: '80px', accent: true },
-  { key: 'name', title: 'Имя' },
+  { key: 'name', title: 'Name' },
   { key: 'email', title: 'Email' },
-  { key: 'status', title: 'Статус', accent: true },
+  { key: 'status', title: 'Status', accent: true },
 ];
 
 const data: User[] = [
-  { id: 1, name: 'Иван', email: 'ivan@example.com', status: 'active' },
-  { id: 2, name: 'Ольга', email: 'olga@example.com', status: 'pending' },
-  { id: 3, name: 'Петр', email: 'petr@example.com', status: 'blocked' },
+  { id: 1, name: 'Ivan', email: 'ivan@example.com', status: 'active' },
+  { id: 2, name: 'Olga', email: 'olga@example.com', status: 'pending' },
+  { id: 3, name: 'Petr', email: 'petr@example.com', status: 'blocked' },
 ];
 
 export default {

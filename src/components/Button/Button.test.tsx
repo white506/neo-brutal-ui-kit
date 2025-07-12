@@ -5,16 +5,16 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../../theme/theme';
 
 describe('Button', () => {
-  it('рендерит текст', () => {
+  it('renders text', () => {
     render(
       <ThemeProvider theme={theme}>
-        <Button>Текст</Button>
+        <Button>Text</Button>
       </ThemeProvider>
     );
-    expect(screen.getByText('Текст')).toBeInTheDocument();
+    expect(screen.getByText('Text')).toBeInTheDocument();
   });
 
-  it('вызывает onClick', () => {
+  it('calls onClick', () => {
     const handleClick = jest.fn();
     render(
       <ThemeProvider theme={theme}>
@@ -25,7 +25,7 @@ describe('Button', () => {
     expect(handleClick).toHaveBeenCalled();
   });
 
-  it('отображает иконку', () => {
+  it('renders icon', () => {
     render(
       <ThemeProvider theme={theme}>
         <Button iconLeft={<span data-testid="icon">i</span>}>Icon</Button>

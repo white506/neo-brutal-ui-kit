@@ -19,7 +19,7 @@ export const Demo = () => {
       <div style={{ padding: 32 }}>
         <ThemeSwitcher themeMode={mode} onToggle={() => setMode(mode === 'day' ? 'night' : 'day')} />
         <div style={{ marginTop: 32 }}>
-          <Button>Пример кнопки</Button>
+          <Button>Button example</Button>
         </div>
       </div>
     </ThemeProvider>

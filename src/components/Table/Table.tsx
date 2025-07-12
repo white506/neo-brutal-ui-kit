@@ -36,7 +36,7 @@ const Th = styled.th<{ $accent?: boolean }>`
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   background: ${({ theme, $accent }) => $accent ? theme.colors.orange : theme.colors.blueGray};
   color: ${({ theme, $accent }) => $accent ? theme.colors.white : theme.colors.black};
-  padding: 24px 32px;
+  padding: 15px 24px;
   text-align: left;
   text-transform: uppercase;
   font-size: 1.2em;
@@ -44,7 +44,7 @@ const Th = styled.th<{ $accent?: boolean }>`
 
 const Td = styled.td`
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
-  padding: 24px 32px;
+  padding: 15px 24px;
   background: ${({ theme }) => theme.colors.beige};
   font-family: ${({ theme }) => theme.fontFamilies.mono};
   font-size: 1.1em;

@@ -7,25 +7,25 @@ import { theme } from '../../theme/theme';
 const renderToast = (props: Partial<ToastProps> = {}) =>
   render(
     <ThemeProvider theme={theme}>
-      <Toast message="Тост" {...props} />
+      <Toast message="Toast" {...props} />
     </ThemeProvider>
   );
 
 describe('Toast', () => {
-  it('рендерит сообщение', () => {
+  it('renders message', () => {
     renderToast();
-    expect(screen.getByText('Тост')).toBeInTheDocument();
+    expect(screen.getByText('Toast')).toBeInTheDocument();
   });
 
-  it('отображает тип', () => {
+  it('shows type', () => {
     renderToast({ type: 'success' });
-    expect(screen.getByText('Тост')).toBeInTheDocument();
+    expect(screen.getByText('Toast')).toBeInTheDocument();
   });
 
-  it('вызывает onClose при клике на кнопку закрытия', () => {
+  it('calls onClose when close button is clicked', () => {
     const onClose = jest.fn();
     renderToast({ onClose });
-    fireEvent.click(screen.getByRole('button', { name: /закрыть/i }));
+    fireEvent.click(screen.getByRole('button', { name: /close/i }));
     expect(onClose).toHaveBeenCalled();
   });
 }); 

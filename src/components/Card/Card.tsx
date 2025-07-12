@@ -13,18 +13,17 @@ export interface CardProps {
   sx?: React.CSSProperties;
   variant?: string;
   // остальные пропсы div
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const shadow = '6px 6px 0 #353C42';
 
 const StyledCard = styled.div<{ $background?: 'concrete', $withShadow?: boolean; $variant?: string }>`
   ${({ theme, $variant }) => (theme.variants && theme.variants.Card && $variant && theme.variants.Card[$variant]) ? theme.variants.Card[$variant] : ''}
-  ${({ theme }) => ((theme.overrides as any)?.Card) ? (theme.overrides as any).Card : ''}
-  background: ${({ theme, $background }) =>
-    $background === 'concrete'
-      ? `${theme.colors.beige} ${concreteTexture} repeat`
-      : theme.colors.beige};
+  ${({ theme }) => ((theme.overrides as Record<string, unknown>)?.Card) ? (theme.overrides as Record<string, unknown>).Card : ''}
+  background-color: ${({ theme }) => theme.colors.beige};
+  background-image: ${({ $background }) => $background === 'concrete' ? concreteTexture : 'none'};
+  background-repeat: repeat;
   color: ${({ theme }) => theme.colors.black};
   border: ${({ theme }) => theme.borderWidth} solid ${({ theme }) => theme.colors.brown};
   border-radius: ${({ theme }) => theme.borderRadius};

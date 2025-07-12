@@ -10,4 +10,5 @@ export * from './components/Checkbox';
 export * from './components/Table';
 export * from './components/Typography';
 export * from './components/ThemeSwitcher';
+export * from './components/Form';
 export * from './icons';

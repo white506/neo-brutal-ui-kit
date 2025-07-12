@@ -18,49 +18,49 @@ export default {
 const Template: StoryFn<TooltipProps> = (args: TooltipProps) => (
   <ThemeProvider theme={theme}>
     <Tooltip {...args}>
-      <Button>Наведи</Button>
+      <Button>Hover me</Button>
     </Tooltip>
   </ThemeProvider>
 );
 
 export const Top = Template.bind({});
 Top.args = {
-  content: 'Сверху',
+  content: 'Top',
   position: 'top',
 };
 
 export const Right = Template.bind({});
 Right.args = {
-  content: 'Справа',
+  content: 'Right',
   position: 'right',
 };
 
 export const Bottom = Template.bind({});
 Bottom.args = {
-  content: 'Снизу',
+  content: 'Bottom',
   position: 'bottom',
 };
 
 export const Left = Template.bind({});
 Left.args = {
-  content: 'Слева',
+  content: 'Left',
   position: 'left',
 };
 
 export const AccentOrange = Template.bind({});
 AccentOrange.args = {
-  content: 'Оранжевый акцент',
+  content: 'Orange accent',
   accent: 'orange',
 };
 
 export const AccentBlue = Template.bind({});
 AccentBlue.args = {
-  content: 'Синий акцент',
+  content: 'Blue accent',
   accent: 'blue',
 };
 
 export const AccentRed = Template.bind({});
 AccentRed.args = {
-  content: 'Красный акцент',
+  content: 'Red accent',
   accent: 'red',
 }; 

@@ -29,7 +29,13 @@ const TooltipWrapper = styled.span`
   display: inline-block;
 `;
 
-const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['accent']; $withShadow?: boolean; $variant?: string }>`
+const TooltipBox = styled.div<{
+  $position: TooltipPosition;
+  $accent: TooltipProps['accent'];
+  $withShadow?: boolean;
+  $variant?: string;
+  $visible: boolean;
+}>`
   ${({ theme, $variant }) => (theme.variants && theme.variants.Tooltip && $variant && theme.variants.Tooltip[$variant]) ? theme.variants.Tooltip[$variant] : ''}
   ${({ theme }) => ((theme.overrides as any)?.Tooltip) ? (theme.overrides as any).Tooltip : ''}
   position: absolute;
@@ -45,14 +51,22 @@ const TooltipBox = styled.div<{ $position: TooltipPosition; $accent: TooltipProp
   font-size: 1.2rem;
   font-weight: ${({ theme }) => theme.fontWeightBold};
   box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
-  transition: box-shadow 0.18s, transform 0.12s;
   text-transform: none;
   pointer-events: none;
   white-space: pre-line;
-  ${({ $position }) => $position === 'top' && css`bottom: 100%; left: 50%; transform: translateX(-50%) translateY(-12px);`}
-  ${({ $position }) => $position === 'bottom' && css`top: 100%; left: 50%; transform: translateX(-50%) translateY(12px);`}
-  ${({ $position }) => $position === 'left' && css`right: 100%; top: 50%; transform: translateY(-50%) translateX(-12px);`}
-  ${({ $position }) => $position === 'right' && css`left: 100%; top: 50%; transform: translateY(-50%) translateX(12px);`}
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transform: ${({ $visible, $position }) => {
+    if ($position === 'top') return $visible ? 'translateX(-50%) translateY(-12px)' : 'translateX(-50%) translateY(-24px)';
+    if ($position === 'bottom') return $visible ? 'translateX(-50%) translateY(12px)' : 'translateX(-50%) translateY(24px)';
+    if ($position === 'left') return $visible ? 'translateY(-50%) translateX(-12px)' : 'translateY(-50%) translateX(-24px)';
+    if ($position === 'right') return $visible ? 'translateY(-50%) translateX(12px)' : 'translateY(-50%) translateX(24px)';
+    return 'none';
+  }};
+  transition: opacity 0.22s cubic-bezier(0.4,0,0.2,1), transform 0.22s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s, background 0.18s;
+  ${({ $position }) => $position === 'top' && css`bottom: 100%; left: 50%;`}
+  ${({ $position }) => $position === 'bottom' && css`top: 100%; left: 50%;`}
+  ${({ $position }) => $position === 'left' && css`right: 100%; top: 50%;`}
+  ${({ $position }) => $position === 'right' && css`left: 100%; top: 50%;`}
 `;
 
 const Arrow = styled.div<{ $position: TooltipPosition; $accent: TooltipProps['accent'] }>`
@@ -90,12 +104,18 @@ export const Tooltip: React.FC<TooltipProps> = ({ content, position = 'top', acc
       tabIndex={0}
     >
       {children}
-      {visible && (
-        <TooltipBox $withShadow={withShadow} $accent={accent} $position={position} $variant={variant} style={sx} role="tooltip">
-          {content}
-          <Arrow $position={position} $accent={accent} />
-        </TooltipBox>
-      )}
+      <TooltipBox
+        $withShadow={withShadow}
+        $accent={accent}
+        $position={position}
+        $variant={variant}
+        $visible={visible}
+        style={sx}
+        role="tooltip"
+      >
+        {content}
+        <Arrow $position={position} $accent={accent} />
+      </TooltipBox>
     </TooltipWrapper>
   );
 }; 

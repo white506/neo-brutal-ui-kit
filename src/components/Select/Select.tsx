@@ -54,12 +54,17 @@ const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean; $
   background: #F9E2B0;
   border: 2px solid #672725;
   border-radius: 0;
-  padding: 20px 32px;
+  padding: 20px 56px 20px 32px; /* увеличен правый паддинг для стрелки */
   outline: none;
   box-shadow: ${({ $withShadow }) => $withShadow !== false ? shadow : 'none'};
   transition: box-shadow 0.15s, border-color 0.15s, background 0.15s, color 0.15s;
   min-height: 64px;
   width: 100%;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 24px center;
+  background-size: 24px 24px;
   &:focus {
     border-color: #F56D39;
     box-shadow: ${({ $withShadow }) => $withShadow !== false ? '4px 4px 0 #353C42' : 'none'};
@@ -73,6 +78,15 @@ const StyledSelect = styled.select<{ $accent?: SelectAccent; $error?: boolean; $
     cursor: not-allowed;
   }
   border-color: ${({ $error }) => ($error ? '#F56D39' : '#672725')};
+
+  /* Стилизация option через select (ограниченно поддерживается) */
+  & option {
+    transition: background 0.22s cubic-bezier(0.4,0,0.2,1), color 0.22s cubic-bezier(0.4,0,0.2,1);
+  }
+  & option:hover, & option:focus, & option:checked {
+    background: #FF6F00 !important;
+    color: #fff !important;
+  }
 `;
 
 const Error = styled.span`

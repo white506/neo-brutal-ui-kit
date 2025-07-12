@@ -19,9 +19,9 @@ const Template: StoryFn<ModalProps> = (args: ModalProps) => {
   const [open, setOpen] = useState(args.open ?? false);
   return (
     <ThemeProvider theme={theme}>
-      <Button onClick={() => setOpen(true)}>Открыть модалку</Button>
+      <Button onClick={() => setOpen(true)}>Open modal</Button>
       <Modal {...args} open={open} onClose={() => setOpen(false)}>
-        {args.children || 'Контент модального окна'}
+        {args.children || 'Modal window content'}
       </Modal>
     </ThemeProvider>
   );
@@ -29,15 +29,15 @@ const Template: StoryFn<ModalProps> = (args: ModalProps) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Заголовок',
+  title: 'Title',
   open: false,
-  children: 'Контент модального окна',
+  children: 'Modal window content',
 };
 
 export const Concrete = Template.bind({});
 Concrete.args = {
-  title: 'Бетон',
+  title: 'Concrete',
   open: true,
-  children: 'Модалка с бетонной текстурой',
+  children: 'Modal with concrete texture',
   background: 'concrete',
 }; 
